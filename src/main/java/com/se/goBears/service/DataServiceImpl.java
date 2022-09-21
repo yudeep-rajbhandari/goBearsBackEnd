@@ -1,10 +1,6 @@
 package com.se.goBears.service;
 
-import com.se.goBears.entity.Data;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
-import java.util.List;
 
 @Service
 public class DataServiceImpl implements DataService {
