@@ -6,18 +6,19 @@ import javax.persistence.*;
 
 @Data
 @Entity
-public class Resource {
+public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
 
     private String name;
-    private boolean availability;
-    private WorkingCondition workingCondition;
-    private ResourceType resourceType;
-    @ManyToOne
-    private ResourceReservation resourceReservation;
+    private String streetAddress;
+    private String city;
+    private String state;
+    private String zipCode;
+    @OneToOne
+    private Building building;
 
     public Long getId() {
         return id;
@@ -26,13 +27,4 @@ public class Resource {
     public void setId(Long id) {
         this.id = id;
     }
-
-    private enum WorkingCondition{
-        Good,Excellent,Old
-    }
-
-    private enum ResourceType{
-        Indoor,Outdoor
-    }
 }
-

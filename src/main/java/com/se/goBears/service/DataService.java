@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface DataService {
 
-    Data finById(long id);
-
-    List<Data> findAll();
-
-    void save(Data data);
+//    Data finById(long id);
+//
+//    List<Data> findAll();
+//
+//    void save(Data data);
 
 }

@@ -1,6 +1,7 @@
 package com.se.goBears.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -10,6 +11,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @ManyToMany
+    private Set<Role> roles;
     @Column(name = "username")
     private String username;
 

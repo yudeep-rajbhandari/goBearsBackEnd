@@ -3,21 +3,21 @@ package com.se.goBears.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @Entity
-public class Resource {
+public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
 
     private String name;
-    private boolean availability;
-    private WorkingCondition workingCondition;
-    private ResourceType resourceType;
+    private Date fromDate;
+    private Date toDate;
     @ManyToOne
-    private ResourceReservation resourceReservation;
+    private Room room;
 
     public Long getId() {
         return id;
@@ -26,13 +26,4 @@ public class Resource {
     public void setId(Long id) {
         this.id = id;
     }
-
-    private enum WorkingCondition{
-        Good,Excellent,Old
-    }
-
-    private enum ResourceType{
-        Indoor,Outdoor
-    }
 }
-
