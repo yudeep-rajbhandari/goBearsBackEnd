@@ -20,16 +20,4 @@ public class Building {
 
     @OneToMany
     private Set<Room> rooms;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setId(Integer floors) {
-        this.floors = floors;
-    }
 }
