@@ -14,5 +14,6 @@ public class Direction {
     private String description;
 
 
+    @OneToOne
     private Room room;
 }
