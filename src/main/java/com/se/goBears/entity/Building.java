@@ -18,6 +18,13 @@ public class Building {
     private Address address;
     private Integer floors;
 
+    private Long latitude;
+    private Long Longitude;
+
+    @OneToMany
+    private Set<Gate> gates;
+
+
     @OneToMany
     private Set<Room> rooms;
 

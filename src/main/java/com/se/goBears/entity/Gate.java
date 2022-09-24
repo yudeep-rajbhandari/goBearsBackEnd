@@ -4,17 +4,21 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-
-public class Direction {
+@Data
+@Entity
+public class Gate {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    private String description;
+    private String name;
+    private Long latitude;
+    private long longitude;
+    private CardinalDirection cardinalDirection;
 
-
-    private Room room;
+    @OneToOne
+    private Building building;
 
     public Long getId() {
         return id;
@@ -22,5 +26,9 @@ public class Direction {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    private enum CardinalDirection{
+        North,South,East,West
     }
 }

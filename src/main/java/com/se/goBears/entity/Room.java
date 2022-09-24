@@ -27,8 +27,11 @@ public class Room {
     @OneToMany
     private Set<Schedule> schedule;
 
-    @OneToOne
+   @OneToOne
     private Direction direction;
+
+    private Long latitude;
+    private Long Longitude;
 
     public Long getId() {
         return id;

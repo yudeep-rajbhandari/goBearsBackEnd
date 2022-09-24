@@ -3,18 +3,21 @@ package com.se.goBears.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Date;
 
-
-public class Direction {
+@Data
+@Entity
+public class Allotment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    private String description;
+    private Date fromDate;
+    private Date toDate;
 
-
-    private Room room;
+    @OneToOne
+    private User user;
 
     public Long getId() {
         return id;
@@ -23,4 +26,5 @@ public class Direction {
     public void setId(Long id) {
         this.id = id;
     }
+
 }
