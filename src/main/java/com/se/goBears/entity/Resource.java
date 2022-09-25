@@ -19,6 +19,11 @@ public class Resource {
     @ManyToOne
     private ResourceReservation resourceReservation;
 
+    @ManyToOne
+    private Room room;
+
+    @OneToOne
+    private User user;
     public Long getId() {
         return id;
     }

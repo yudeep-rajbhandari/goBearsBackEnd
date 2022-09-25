@@ -22,6 +22,17 @@ public class User {
     @OneToOne
     private Allotment allotment;
 
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+    @OneToOne
+    private Room room;
+
     public Long getId() {
         return id;
     }

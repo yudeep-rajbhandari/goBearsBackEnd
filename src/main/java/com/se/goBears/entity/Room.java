@@ -15,8 +15,9 @@ public class Room {
 
     private String name;
     private RoomType roomType;
-    private String roomNumber;
     private boolean isBookable;
+
+
 
     @ManyToOne
     private RoomReservation roomReservation;
@@ -26,6 +27,13 @@ public class Room {
 
     @OneToMany
     private Set<Schedule> schedule;
+
+    @OneToMany
+    private Set<Resource> resources;
+
+
+    @OneToMany
+    private Set<User> users;
 
    @OneToOne
     private Direction direction;
@@ -41,7 +49,7 @@ public class Room {
         this.id = id;
     }
 
-    private enum RoomType{
+    public enum RoomType{
         classroom,staffroom,lab,washroom
     }
 }
