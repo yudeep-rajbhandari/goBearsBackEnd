@@ -24,8 +24,8 @@ public class AuthRestMethod {
     @Resource
     private SecurityService securityService;
 
-    @PostMapping("/sign_in")
-    public UserDto sign_in(@RequestParam String username, @RequestParam String password) {
+    @PostMapping("/signIn")
+    public UserDto signIn(@RequestParam String username, @RequestParam String password) {
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
@@ -37,8 +37,8 @@ public class AuthRestMethod {
         return newUser;
     }
 
-    @PostMapping("/sign_up")
-    public UserDto sign_up(@RequestParam String username, @RequestParam String password) {
+    @PostMapping("/signUp")
+    public UserDto signUp(@RequestParam String username, @RequestParam String password) {
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);

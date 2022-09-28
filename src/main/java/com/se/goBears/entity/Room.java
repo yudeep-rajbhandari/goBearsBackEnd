@@ -28,15 +28,15 @@ public class Room {
     @OneToMany
     private Set<Schedule> schedule;
 
-    @OneToMany
-    private Set<Resource> resources;
+//    @OneToMany
+//    private Set<Resource> resources;
 
 
     @OneToMany
     private Set<User> users;
-
-   @OneToOne
-    private Direction direction;
+//
+//   @OneToOne
+//    private Direction direction;
 
     private Long latitude;
     private Long Longitude;
