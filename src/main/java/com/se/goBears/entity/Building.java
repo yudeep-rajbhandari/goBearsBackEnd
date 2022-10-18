@@ -3,23 +3,26 @@ package com.se.goBears.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
 @Data
-public class Building {
+public class Building implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
 
     private String name;
+
     @OneToOne
     private Address address;
+
     private Integer floors;
 
     private Long latitude;
-    private Long Longitude;
+    private Long longitude;
 
     @OneToMany
     private Set<Gate> gates;
