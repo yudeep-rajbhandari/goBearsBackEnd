@@ -16,7 +16,7 @@ public class SignupRequest {
     @Email
     private String email;
 
-    private Set<String> role= new HashSet<>();
+    private Set<String> role;
 
     @NotBlank
     @Size(min = 6, max = 40)
