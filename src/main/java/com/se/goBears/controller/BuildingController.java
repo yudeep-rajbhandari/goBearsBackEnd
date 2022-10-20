@@ -22,6 +22,7 @@ public class BuildingController {
     @PostMapping("/addBuilding")
     @PreAuthorize("hasRole('ADMIN')")
     public Building addBuilding( @RequestBody Building building){
+
         return buildingService.addBuilding(building);
     }
 }
