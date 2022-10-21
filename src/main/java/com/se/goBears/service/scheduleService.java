@@ -1,6 +1,5 @@
 package com.se.goBears.service;
 
-import com.se.goBears.dao.RoomDao;
 import com.se.goBears.dao.ScheduleDao;
 import com.se.goBears.entity.Room;
 import com.se.goBears.entity.Schedule;

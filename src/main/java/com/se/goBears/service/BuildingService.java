@@ -1,7 +1,6 @@
 package com.se.goBears.service;
 
 import com.se.goBears.dao.BuildingDao;
-import com.se.goBears.dao.RoomDao;
 import com.se.goBears.entity.Address;
 import com.se.goBears.entity.Building;
 import com.se.goBears.entity.Room;
@@ -11,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Transactional
 @Service

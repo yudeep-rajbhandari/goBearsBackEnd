@@ -1,7 +1,7 @@
 package com.se.goBears.service;
 
 import com.se.goBears.dao.ReservationDao;
-import com.se.goBears.dao.RoomDao;
+import com.se.goBears.repository.RoomRepository;
 import com.se.goBears.entity.Reservations;
 import com.se.goBears.entity.Room;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Date;
 import java.util.Set;
 
@@ -18,18 +16,18 @@ import java.util.Set;
 public class RoomReservationService {
 
     @Autowired
-    private RoomDao roomDao;
+    private RoomRepository roomRepository;
 
     @Autowired
     private ReservationDao reservationDao;
 
     public Set<Reservations> getRoomReservation(Long roomId){
-        Room room = roomDao.findById(roomId).get();
+        Room room = roomRepository.findById(roomId).get();
         return room.getRoomReservation();
     }
 
     public Room roomReservation(Long roomId, Reservations reservations) throws Exception {
-        Room room = roomDao.findById(roomId).get();
+        Room room = roomRepository.findById(roomId).get();
         for(Reservations roomReservation: room.getRoomReservation()){
             boolean cond1 = isDateInBetweenIncludingEndPoints(getDate(roomReservation.getFromDate()),getDate(roomReservation.getToDate()),getDate(reservations.getFromDate()));
             boolean cond2 = isDateInBetweenIncludingEndPoints(getDate(roomReservation.getFromDate()),getDate(roomReservation.getToDate()),getDate(reservations.getToDate()));
@@ -42,7 +40,7 @@ public class RoomReservationService {
         Reservations roomReservation = reservationDao.save(reservations);
         room.getRoomReservation().add(roomReservation);
         room.setId(room.getId());
-        return roomDao.save(room);
+        return roomRepository.save(room);
 
     }
     public Date getDate(String a){
