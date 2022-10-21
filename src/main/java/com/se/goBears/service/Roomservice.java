@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class Roomservice {
@@ -50,6 +51,10 @@ public class Roomservice {
             throw  new Exception("Cannot find room");
         }
 
+    }
+    public List<Room> getAllBookableRoom(){
+        List<Room> roomList = roomDao.findAll();
+        return roomList.stream().filter(j->!j.isBookable()).collect(Collectors.toList());
     }
 
 }
