@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/building")
 @CrossOrigin(origins = "http://localhost:3000")
@@ -24,5 +26,10 @@ public class BuildingController {
     public Building addBuilding( @RequestBody Building building){
 
         return buildingService.addBuilding(building);
+    }
+    @GetMapping("/getAllBuilding")
+    @PreAuthorize("hasRole('ADMIN')")
+    public List<Building> getAllBuilding(){
+        return buildingService.getAllBuilding();
     }
 }
