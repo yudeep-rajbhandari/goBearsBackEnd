@@ -3,18 +3,26 @@ package com.se.goBears.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @Entity
-public class Address {
+public class Address implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue
     private Long id;
-
-
     private String street;
     private String city;
+    private String state;
+    private String zip;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getStreet() {
         return street;
@@ -46,17 +54,5 @@ public class Address {
 
     public void setZip(String zip) {
         this.zip = zip;
-    }
-
-
-    private String state;
-    private String zip;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }

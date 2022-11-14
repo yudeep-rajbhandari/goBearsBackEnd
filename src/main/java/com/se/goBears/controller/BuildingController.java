@@ -32,4 +32,11 @@ public class BuildingController {
     public List<Building> getAllBuilding(){
         return buildingService.getAllBuilding();
     }
+
+
+    @PutMapping("/updateBuilding")
+    @PreAuthorize("hasRole('ADMIN')")
+    public Building editBuilding(@RequestBody Building building){
+        return buildingService.editBuilding(building);
+    }
 }

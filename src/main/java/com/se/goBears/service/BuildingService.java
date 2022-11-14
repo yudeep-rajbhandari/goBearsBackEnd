@@ -55,4 +55,21 @@ public List<Building> getAllBuilding(){
 }
 
 
+public Building editBuilding(Building building){
+        Building updateBuilding = buildingRepository.findBuildingById(building.getId());
+        Address updateAddress = addressRepository.findAddressById(updateBuilding.getAddress().getId());
+
+        updateAddress.setStreet(building.getAddress().getStreet());
+        updateAddress.setCity(building.getAddress().getCity());
+        updateAddress.setState(building.getAddress().getState());
+        updateAddress.setZip(building.getAddress().getZip());
+
+    updateBuilding.setName(building.getName());
+    updateBuilding.setFloors(building.getFloors());
+    updateBuilding.setAddress(addressRepository.save(updateAddress));
+
+        return buildingRepository.save(updateBuilding);
+}
+
+
 }

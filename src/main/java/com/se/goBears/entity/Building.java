@@ -10,9 +10,18 @@ import java.util.Set;
 @Data
 public class Building implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue
     private Long id;
+    private String name;
+    @OneToOne
+    private Address address;
+    private Integer floors;
+    private Long latitude;
+    private Long longitude;
+    @OneToMany
+    private Set<Gate> gates;
+    @OneToMany
+    private Set<Room> rooms;
 
     public Long getId() {
         return id;
@@ -77,21 +86,4 @@ public class Building implements Serializable {
     public void setRooms(Set<Room> rooms) {
         this.rooms = rooms;
     }
-
-    private String name;
-
-    @OneToOne
-    private Address address;
-
-    private Integer floors;
-
-    private Long latitude;
-    private Long longitude;
-
-    @OneToMany
-    private Set<Gate> gates;
-
-
-    @OneToMany
-    private Set<Room> rooms;
 }
