@@ -12,13 +12,23 @@ public class Reservations {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @ManyToOne
-    private User bookedBy;
+
+    private Integer bookedBy;
 
     private String fromDate;
     private String toDate;
 
-    private Status status;
+    private long roomId;
+
+    public long getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(long roomId) {
+        this.roomId = roomId;
+    }
+
+    private Status status = Status.Pending;
     public enum Status{
         Pending, Cancelled, Approved
     }
@@ -35,11 +45,11 @@ public class Reservations {
         this.id = id;
     }
 
-    public User getBookedBy() {
+    public Integer getBookedBy() {
         return bookedBy;
     }
 
-    public void setBookedBy(User bookedBy) {
+    public void setBookedBy(Integer bookedBy) {
         this.bookedBy = bookedBy;
     }
 

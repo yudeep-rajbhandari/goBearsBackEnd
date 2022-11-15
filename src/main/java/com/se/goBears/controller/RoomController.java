@@ -39,6 +39,17 @@ public class RoomController {
             return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
         }
     }
+    @GetMapping("/all/bookable")
+    public ResponseEntity getRoom(){
+        try {
+            List<Room> room1 = roomservice.getAllBookableRoom();
+            return new ResponseEntity<>(room1, HttpStatus.OK);
+        }
+        catch (Exception e){
+            Error error = new Error(e.getMessage(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+        }
+    }
 
 
 

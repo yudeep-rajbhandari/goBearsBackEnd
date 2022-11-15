@@ -6,6 +6,7 @@ import com.se.goBears.service.RoomReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -24,5 +25,10 @@ public class ReservationController {
     @GetMapping("/room")
     public Set<Reservations> getRoomReservation(@RequestParam Long id){
         return roomReservationService.getRoomReservation(id);
+    }
+
+    @GetMapping("/byUserId")
+    public List<Reservations> getRoomReservationById(@RequestParam Integer id){
+        return roomReservationService.getRoomReservationById(id);
     }
 }
