@@ -1,17 +1,12 @@
 package com.se.goBears.service;
 
 //import com.se.goBears.dao.ResourceDao;
-import com.se.goBears.dao.RoomDao;
-import com.se.goBears.entity.Building;
-import com.se.goBears.entity.Building;
-import com.se.goBears.repository.RoomRepository;
 //import com.se.goBears.entity.Resource;
 import com.se.goBears.entity.Room;
+import com.se.goBears.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.awt.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -20,7 +15,9 @@ import java.util.stream.Collectors;
 public class Roomservice {
 
     @Autowired
-    private RoomDao roomDao;
+    private RoomRepository roomRepository;
+
+
 
     @Autowired
     private BuildingService buildingService;
@@ -29,7 +26,7 @@ public class Roomservice {
 //    private ResourceDao resourceDao;
 
     public Room getRoomByName(String name){
-        return roomDao.findRoomByName(name);
+        return roomRepository.findRoomByName(name);
     }
 
     public Room createRoom(Room room) throws Exception {
@@ -38,16 +35,16 @@ public class Roomservice {
             throw new Exception("Same room name exists");
 
         }
-        return roomDao.save(room);
+        return roomRepository.save(room);
     }
 
 
     public boolean checkIfAlreadyExists(String roomName){
-        Room room = roomDao.findRoomByName(roomName);
+        Room room = roomRepository.findRoomByName(roomName);
         return room !=null;
     }
     public Room getRoom(long id) throws Exception {
-        Optional<Room> room = roomDao.findById(id);
+        Optional<Room> room = roomRepository.findById(id);
         if(room.isPresent()){
             return room.get();
         }
@@ -78,9 +75,9 @@ public class Roomservice {
        updateRoom.setIsBookable(room.isBookable());
        return roomRepository.save(updateRoom);
    }
-    }
+
     public List<Room> getAllBookableRoom(){
-        List<Room> roomList = roomDao.findAll();
+        List<Room> roomList = roomRepository.findAll();
         return roomList.stream().filter(j->!j.isBookable()).collect(Collectors.toList());
     }
 

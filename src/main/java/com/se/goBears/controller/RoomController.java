@@ -42,7 +42,7 @@ public class RoomController {
     @GetMapping("/all/bookable")
     public ResponseEntity getRoom(){
         try {
-            List<Room> room1 = roomservice.getAllBookableRoom();
+            List<Room> room1 = roomService.getAllBookableRoom();
             return new ResponseEntity<>(room1, HttpStatus.OK);
         }
         catch (Exception e){
