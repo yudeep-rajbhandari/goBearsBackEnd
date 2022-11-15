@@ -71,5 +71,9 @@ public Building editBuilding(Building building){
         return buildingRepository.save(updateBuilding);
 }
 
+public Building findBuildingById(Long buildingId){
+        return buildingRepository.findBuildingById(buildingId);
+}
+
 
 }

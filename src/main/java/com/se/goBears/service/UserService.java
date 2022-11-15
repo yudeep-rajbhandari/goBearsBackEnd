@@ -4,16 +4,27 @@ import com.se.goBears.dao.UserDao;
 //import com.se.goBears.entity.Resource;
 import com.se.goBears.entity.Room;
 import com.se.goBears.entity.User;
+import com.se.goBears.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public interface UserService {
+@Service
+public class UserService {
 
-    void save(User user);
+  @Autowired
+    UserRepository userRepository;
+          public User updateRole(Long userId){
+                User user = userRepository.findUserById(userId);
+//                user.setRoles();
+                  return null;
+          }
 
-    User findByUsername(String username);
 
+          public User findUserByEmail(String email){
+            return  userRepository.findUserByEmail(email);
+          }
 
 }

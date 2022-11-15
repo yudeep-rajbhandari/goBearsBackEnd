@@ -39,4 +39,12 @@ public class BuildingController {
     public Building editBuilding(@RequestBody Building building){
         return buildingService.editBuilding(building);
     }
+
+
+    @GetMapping("/findBuildingById/{buildingId}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public Building findBuildingById(@PathVariable Long buildingId){
+        return buildingService.findBuildingById(buildingId);
+    }
+
 }
