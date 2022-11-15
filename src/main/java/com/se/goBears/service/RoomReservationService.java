@@ -40,7 +40,11 @@ public class RoomReservationService {
         for(Reservations roomReservation: room.getRoomReservation()){
             boolean cond1 = isDateInBetweenIncludingEndPoints(getDate(roomReservation.getFromDate()),getDate(roomReservation.getToDate()),getDate(reservations.getFromDate()));
             boolean cond2 = isDateInBetweenIncludingEndPoints(getDate(roomReservation.getFromDate()),getDate(roomReservation.getToDate()),getDate(reservations.getToDate()));
-            if(cond1 || cond2){
+            boolean cond3 = isDateInBetweenIncludingEndPoints(getDate(reservations.getFromDate()),getDate(reservations.getToDate()),getDate(roomReservation.getFromDate()));
+            boolean cond4 = isDateInBetweenIncludingEndPoints(getDate(reservations.getFromDate()),getDate(reservations.getToDate()),getDate(roomReservation.getToDate()));
+
+
+            if(cond1 || cond2 || cond3 || cond4){
                 throw new Exception("Cannot reserve because reservation already found for given date/time");
             }
 

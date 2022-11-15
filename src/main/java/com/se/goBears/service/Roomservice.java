@@ -1,7 +1,5 @@
 package com.se.goBears.service;
 
-//import com.se.goBears.dao.ResourceDao;
-//import com.se.goBears.entity.Resource;
 import com.se.goBears.entity.Room;
 import com.se.goBears.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +20,6 @@ public class Roomservice {
     @Autowired
     private BuildingService buildingService;
 
-//    @Autowired
-//    private ResourceDao resourceDao;
 
     public Room getRoomByName(String name){
         return roomRepository.findRoomByName(name);
@@ -79,6 +75,11 @@ public class Roomservice {
     public List<Room> getAllBookableRoom(){
         List<Room> roomList = roomRepository.findAll();
         return roomList.stream().filter(j->!j.isBookable()).collect(Collectors.toList());
+    }
+
+    public List<Room> getAllClassRoom(){
+        List<Room> roomList = roomRepository.findRoomByRoomType(Room.RoomType.classroom);
+        return roomList;
     }
 
 }
