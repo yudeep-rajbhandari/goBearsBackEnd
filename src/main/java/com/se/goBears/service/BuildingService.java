@@ -1,15 +1,15 @@
 package com.se.goBears.service;
 
 import com.se.goBears.dao.BuildingDao;
-import com.se.goBears.dao.RoomDao;
+import com.se.goBears.entity.Address;
 import com.se.goBears.entity.Building;
 import com.se.goBears.entity.Room;
+import com.se.goBears.repository.AddressRepository;
 import com.se.goBears.repository.BuildingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -22,6 +22,8 @@ public class BuildingService {
     @Autowired
     private BuildingDao buildingDao;
 
+    @Autowired
+    public AddressRepository addressRepository;
 
     @Autowired
     private BuildingRepository buildingRepository;
@@ -40,18 +42,34 @@ public class BuildingService {
         return building;
 
     }
-//    public List<Building> getSelectedBuilding(String buildingNames){
-//        List<Building> buildingList = new ArrayList<>();
-//        for (String name: buildingNames){
-//            buildingList.add()
-//        }
-//    }
+
 
     public Building addBuilding(Building building){
+        Address address = addressRepository.save(building.getAddress());
+        building.setAddress(address);
         buildingRepository.save(building);
         return building;
     }
+public List<Building> getAllBuilding(){
+    return (List<Building>) buildingRepository.findAll();
+}
 
+
+public Building editBuilding(Building building){
+        Building updateBuilding = buildingRepository.findBuildingById(building.getId());
+        Address updateAddress = addressRepository.findAddressById(updateBuilding.getAddress().getId());
+
+        updateAddress.setStreet(building.getAddress().getStreet());
+        updateAddress.setCity(building.getAddress().getCity());
+        updateAddress.setState(building.getAddress().getState());
+        updateAddress.setZip(building.getAddress().getZip());
+
+    updateBuilding.setName(building.getName());
+    updateBuilding.setFloors(building.getFloors());
+    updateBuilding.setAddress(addressRepository.save(updateAddress));
+
+        return buildingRepository.save(updateBuilding);
+}
 
 
 }

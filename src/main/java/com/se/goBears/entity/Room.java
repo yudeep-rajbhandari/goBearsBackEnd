@@ -69,8 +69,8 @@ public class Room {
         return isBookable;
     }
 
-    public void setBookable(boolean bookable) {
-        isBookable = bookable;
+    public void setIsBookable(boolean isBookable) {
+        this.isBookable = isBookable;
     }
 
     public Set<Reservations> getRoomReservation() {
