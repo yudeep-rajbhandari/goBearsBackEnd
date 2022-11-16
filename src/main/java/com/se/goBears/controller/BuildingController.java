@@ -28,7 +28,7 @@ public class BuildingController {
         return buildingService.addBuilding(building);
     }
     @GetMapping("/getAllBuilding")
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     public List<Building> getAllBuilding(){
         return buildingService.getAllBuilding();
     }

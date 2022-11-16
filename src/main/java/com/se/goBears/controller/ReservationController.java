@@ -4,6 +4,9 @@ import com.se.goBears.entity.Reservations;
 import com.se.goBears.entity.Room;
 import com.se.goBears.service.RoomReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,8 +21,15 @@ public class ReservationController {
     private RoomReservationService roomReservationService;
 
     @PostMapping("/room/{id}")
-    public Room reserveRoom(@PathVariable Long id, @RequestBody Reservations reservations ) throws Exception {
-       return  roomReservationService.roomReservation(id,reservations);
+    public ResponseEntity reserveRoom(@PathVariable Long id, @RequestBody Reservations reservations ) throws Exception {
+        try{
+            Room room = roomReservationService.roomReservation(id,reservations);
+            return new ResponseEntity<>(room, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(new Error(e.getMessage()), HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @GetMapping("/room")

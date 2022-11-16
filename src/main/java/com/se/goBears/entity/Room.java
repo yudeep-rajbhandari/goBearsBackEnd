@@ -25,12 +25,6 @@ public class Room implements Serializable {
 
     @ManyToOne
     private Building building;
-
-    @OneToMany
-    private Set<Schedule> schedule= new HashSet<>();
-
-
-
     @OneToMany
     private Set<User> users = new HashSet<>();
 
@@ -88,14 +82,6 @@ public class Room implements Serializable {
 
     public void setBuilding(Building building) {
         this.building = building;
-    }
-
-    public Set<Schedule> getSchedule() {
-        return schedule;
-    }
-
-    public void setSchedule(Set<Schedule> schedule) {
-        this.schedule = schedule;
     }
 
     public Set<User> getUsers() {

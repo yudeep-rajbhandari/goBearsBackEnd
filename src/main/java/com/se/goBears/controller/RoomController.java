@@ -1,5 +1,6 @@
 package com.se.goBears.controller;
 
+import com.se.goBears.entity.Building;
 import com.se.goBears.entity.Room;
 import com.se.goBears.service.Roomservice;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,5 +70,15 @@ public class RoomController {
     @PutMapping("/updateRoom")
     public Room updateRoom(@RequestBody Room room){
         return roomService.updateRoom(room);
+    }
+
+//    @GetMapping("/findAllClassRoom")
+//    public List<Room> findAllClassRoom(){
+//        return roomService.getAllClassRoom();
+//    }
+
+    @GetMapping("/findAllClassRoom")
+    public List<Room> findAllClassRoomByBuilding(@RequestParam Long buildlingId){
+            return roomService.getAllClassRoomByBuilding(buildlingId);
     }
 }
