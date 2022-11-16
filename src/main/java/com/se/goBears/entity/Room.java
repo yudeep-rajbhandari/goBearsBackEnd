@@ -13,7 +13,6 @@ import java.util.Set;
 public class Room implements Serializable {
     @Id
     @GeneratedValue
-
     private Long id;
 
     private String name;
