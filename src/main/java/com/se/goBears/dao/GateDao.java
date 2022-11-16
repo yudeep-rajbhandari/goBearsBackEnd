@@ -1,2 +1,4 @@
-package com.se.goBears.dao;public interface GateDao {
+package com.se.goBears.dao;
+
+public interface GateDao {
 }
