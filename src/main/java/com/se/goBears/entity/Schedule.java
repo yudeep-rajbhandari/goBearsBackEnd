@@ -17,7 +17,8 @@ public class Schedule {
     private Date fromDate;
     private Date toDate;
 
-    private Long roomid;
+    @ManyToOne
+    private Room room;
 
     public String getName() {
         return name;
@@ -43,12 +44,12 @@ public class Schedule {
         this.toDate = toDate;
     }
 
-    public Long getRoomid() {
-        return roomid;
+    public Room getRoom() {
+        return room;
     }
 
-    public void setRoomid(Long roomid) {
-        this.roomid = roomid;
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
     public Long getId() {

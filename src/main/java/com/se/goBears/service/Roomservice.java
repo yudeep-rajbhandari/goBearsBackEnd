@@ -77,8 +77,8 @@ public class Roomservice {
         return roomList.stream().filter(j->!j.isBookable()).collect(Collectors.toList());
     }
 
-    public List<Room> getAllClassRoom(){
-        List<Room> roomList = roomRepository.findRoomByRoomType(Room.RoomType.classroom);
+    public List<Room> getAllClassRoomByBuilding(Long buildingId){
+        List<Room> roomList = roomRepository.findRoomByBuilding_IdAndRoomType(buildingId,Room.RoomType.classroom);
         return roomList;
     }
 
