@@ -1,10 +1,8 @@
 package com.se.goBears.entity;
 
-import lombok.Data;
-
 import javax.persistence.*;
 
-@Data
+
 @Entity
 public class Gate {
     @Id
