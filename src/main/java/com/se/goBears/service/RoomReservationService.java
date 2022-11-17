@@ -1,17 +1,16 @@
 package com.se.goBears.service;
 
-import com.se.goBears.dao.ReservationDao;
+
 
 import com.se.goBears.entity.Reservations;
 import com.se.goBears.entity.Room;
+import com.se.goBears.repository.ReservationRepository;
 import com.se.goBears.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -23,7 +22,7 @@ public class RoomReservationService {
     private RoomRepository roomDao;
 
     @Autowired
-    private ReservationDao reservationDao;
+    private ReservationRepository reservationRepository;
 
     public Set<Reservations> getRoomReservation(Long roomId){
         Room room = roomDao.findById(roomId).get();
@@ -31,7 +30,7 @@ public class RoomReservationService {
     }
 
     public List<Reservations> getRoomReservationById(Integer userId){
-        List<Reservations> reservationsList = reservationDao.findAllByBookedBy(userId);
+        List<Reservations> reservationsList = reservationRepository.findAllByBookedBy(userId);
         return reservationsList;
     }
 
@@ -51,7 +50,7 @@ public class RoomReservationService {
         }
         reservations.setReserveType(Reservations.ReserveType.Room);
         reservations.setRoomId(room.getId());
-        Reservations roomReservation = reservationDao.save(reservations);
+        Reservations roomReservation = reservationRepository.save(reservations);
         room.getRoomReservation().add(roomReservation);
         room.setId(room.getId());
         return roomDao.save(room);
@@ -72,4 +71,15 @@ public class RoomReservationService {
         return !(date.before(min) || date.after(max));
     }
 
+
+    public List<Reservations> getAllRoomReservation(){
+        return reservationRepository.findAll();
+    }
+
+    public Reservations acceptRoomReservation(Long id){
+        Reservations roomReservation = reservationRepository.findReservationsById(id);
+        roomReservation.setStatus(Reservations.Status.Approved);
+        return reservationRepository.save(roomReservation);
+
+    }
 }
