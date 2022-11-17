@@ -20,7 +20,26 @@ public class ScheduleRequest {
         }
         private String selectedFromTime;
         private String selectedToTime;
+        private String selectedFromDate;
+
+        private String selectedToDate;
         private String name;
+
+        public String getSelectedFromDate() {
+                return selectedFromDate;
+        }
+
+        public void setSelectedFromDate(String selectedFromDate) {
+                this.selectedFromDate = selectedFromDate;
+        }
+
+        public String getSelectedToDate() {
+                return selectedToDate;
+        }
+
+        public void setSelectedToDate(String selectedToDate) {
+                this.selectedToDate = selectedToDate;
+        }
 
         public Long getRoomId() {
                 return roomId;
