@@ -57,11 +57,11 @@ public class ScheduleService {
 
     public void addSchedule(ScheduleRequest request) throws Exception {
         Room room = roomRepository.findById(request.getRoomId()).get();
-        List<Schedule> scheduleList = scheduleRepository.findScheduleByRoom_IdAndFromDateGreaterThan(room.getId(),new DateTime(request.getSelectedFromTime()).toDate());
+        List<Schedule> scheduleList = scheduleRepository.findScheduleByRoom_IdAndFromDateGreaterThan(room.getId(),new DateTime(request.getSelectedFromDate()).toDate());
         List<DateTime> dateTimes = new ArrayList<>();
         if(request.getSelectedFrequency().equals(ScheduleRequest.Frequency.Custom)){
             for(ScheduleRequest.Custom s:request.getCustom()){
-                List<DateTime> getDate = getAlldayDate(request.getSelectedFromTime(), request.getSelectedToTime(),map.get(s.toString()));
+                List<DateTime> getDate = getAlldayDate(request.getSelectedFromDate(), request.getSelectedToDate(),map.get(s.toString()));
                 dateTimes.addAll(getDate);
             }
             for (DateTime dateTime:dateTimes){
@@ -77,7 +77,7 @@ public class ScheduleService {
                     ScheduleRequest.Custom.TR,
                     ScheduleRequest.Custom.F});
             for(ScheduleRequest.Custom s:aa){
-                List<DateTime> getDate = getAlldayDate(request.getSelectedFromTime(), request.getSelectedToTime(),map.get(s.toString()));
+                List<DateTime> getDate = getAlldayDate(request.getSelectedFromDate(), request.getSelectedToDate(),map.get(s.toString()));
                 dateTimes.addAll(getDate);
             }
             for (DateTime dateTime:dateTimes){
@@ -87,7 +87,7 @@ public class ScheduleService {
             }
         }
         else{
-            saveSchedule(getDate(request.getSelectedFromTime()),getDate(request.getSelectedToTime()), request.getName(), room,scheduleList);
+            saveSchedule(addTime(getDate(request.getSelectedFromDate()),getDate(request.getSelectedFromTime())),addTime(getDate(request.getSelectedToDate()),getDate(request.getSelectedToTime())), request.getName(), room,scheduleList);
         }
 
 
