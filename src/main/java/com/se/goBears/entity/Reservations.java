@@ -25,9 +25,9 @@ public class Reservations {
         this.roomId = roomId;
     }
 
-    private Status status = Status.Pending;
+    private Status status = Status.PENDING;
     public enum Status{
-        Pending, Cancelled, Approved
+        PENDING, DECLINED, APPROVED, ARCHIVED
     }
     private ReserveType reserveType;
     public enum ReserveType{

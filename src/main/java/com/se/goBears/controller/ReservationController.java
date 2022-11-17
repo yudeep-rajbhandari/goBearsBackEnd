@@ -54,4 +54,12 @@ public class ReservationController {
     public Reservations acceptRoomReservation(@PathVariable Long id){
         return roomReservationService.acceptRoomReservation(id);
     }
+    @PutMapping("/declineRoomReservation/{id}")
+    public Reservations declineRoomReservation(@PathVariable Long id){
+        return roomReservationService.declineRoomReservation(id);
+    }
+    @PutMapping("/archiveRoomReservation/{id}")
+    public Reservations archiveRoomReservation(@PathVariable Long id){
+        return roomReservationService.archiveRoomReservation(id);
+    }
 }

@@ -78,8 +78,17 @@ public class RoomReservationService {
 
     public Reservations acceptRoomReservation(Long id){
         Reservations roomReservation = reservationRepository.findReservationsById(id);
-        roomReservation.setStatus(Reservations.Status.Approved);
+        roomReservation.setStatus(Reservations.Status.APPROVED);
         return reservationRepository.save(roomReservation);
-
+    }
+    public Reservations declineRoomReservation(Long id){
+        Reservations roomReservation = reservationRepository.findReservationsById(id);
+        roomReservation.setStatus(Reservations.Status.DECLINED);
+        return reservationRepository.save(roomReservation);
+    }
+    public Reservations archiveRoomReservation(Long id){
+        Reservations roomReservation = reservationRepository.findReservationsById(id);
+        roomReservation.setStatus(Reservations.Status.ARCHIVED);
+        return reservationRepository.save(roomReservation);
     }
 }
