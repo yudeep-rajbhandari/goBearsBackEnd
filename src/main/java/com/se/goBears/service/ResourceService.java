@@ -1,6 +1,7 @@
 package com.se.goBears.service;
 
 import com.se.goBears.entity.Resource;
+import com.se.goBears.entity.Room;
 import com.se.goBears.repository.ResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -36,4 +37,17 @@ public class ResourceService {
         List<Resource> resources = resourceRepo.findResourceByWorkingCondition(condition);
         return resources;
     };
+
+    public void createResource(){
+
+    }
+
+    public Resource createResource(Resource resource) throws Exception {
+
+        if (getResourceByName(resource.getResourceName()) != null){
+            throw new Exception("Resource with given name already exists");
+        };
+        return resourceRepo.save(resource);
+    }
+
 }
