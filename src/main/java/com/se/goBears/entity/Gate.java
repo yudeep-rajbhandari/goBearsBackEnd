@@ -1,8 +1,10 @@
 package com.se.goBears.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
-
+@Data
 @Entity
 public class Gate {
     @Id
@@ -18,13 +20,13 @@ public class Gate {
     @OneToOne
     private Building building;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
     private enum CardinalDirection{
         North,South,East,West
