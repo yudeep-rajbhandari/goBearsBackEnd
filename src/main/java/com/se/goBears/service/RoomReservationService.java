@@ -1,17 +1,15 @@
 package com.se.goBears.service;
 
-import com.se.goBears.dao.ReservationDao;
 
 import com.se.goBears.entity.Reservations;
 import com.se.goBears.entity.Room;
+import com.se.goBears.repository.ReservationRepository;
 import com.se.goBears.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
