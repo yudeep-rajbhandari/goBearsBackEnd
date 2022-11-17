@@ -72,10 +72,7 @@ public class RoomController {
         return roomService.updateRoom(room);
     }
 
-//    @GetMapping("/findAllClassRoom")
-//    public List<Room> findAllClassRoom(){
-//        return roomService.getAllClassRoom();
-//    }
+
 
     @GetMapping("/findAllClassRoom")
     public List<Room> findAllClassRoomByBuilding(@RequestParam Long buildlingId){

@@ -1,13 +1,10 @@
 package com.se.goBears.entity;
 
-import lombok.Data;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
 @Entity
-@Data
 public class Building implements Serializable {
     @Id
     @GeneratedValue

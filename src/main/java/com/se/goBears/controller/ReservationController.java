@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,5 +41,17 @@ public class ReservationController {
     @GetMapping("/byUserId")
     public List<Reservations> getRoomReservationById(@RequestParam Integer id){
         return roomReservationService.getRoomReservationById(id);
+    }
+
+
+
+    @GetMapping("/getAllRoomReservation")
+    public List<Reservations> getAllRoomReservation(){
+        return roomReservationService.getAllRoomReservation();
+    }
+
+    @PutMapping("/acceptRoomReservation/{id}")
+    public Reservations acceptRoomReservation(@PathVariable Long id){
+        return roomReservationService.acceptRoomReservation(id);
     }
 }
