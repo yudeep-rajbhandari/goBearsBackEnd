@@ -40,10 +40,6 @@ public class ResourceService {
         return resources;
     };
 
-    public void createResource(){
-
-    }
-
     public Resource createResource(Resource resource) throws Exception {
 
         if (getResourceByName(resource.getResourceName()) != null){
