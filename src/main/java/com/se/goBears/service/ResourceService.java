@@ -4,10 +4,12 @@ import com.se.goBears.entity.Resource;
 import com.se.goBears.entity.Room;
 import com.se.goBears.repository.ResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Set;
 
+@Service
 public class ResourceService {
 
     @Autowired

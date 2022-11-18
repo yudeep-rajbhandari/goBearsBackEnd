@@ -21,7 +21,7 @@ import java.util.*;
 public class ScheduleService {
 
     @Autowired
-    private Roomservice roomservice;
+    private RoomService roomservice;
 
     @Autowired
     private ScheduleRepository scheduleRepository;

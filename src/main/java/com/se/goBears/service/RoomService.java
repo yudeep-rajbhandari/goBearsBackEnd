@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class Roomservice {
+public class RoomService {
 
     @Autowired
     private RoomRepository roomRepository;
