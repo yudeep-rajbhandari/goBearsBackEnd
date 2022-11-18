@@ -124,8 +124,8 @@ public class ScheduleService {
     private Schedule saveSchedule(Date fromDate,Date toDate,String schedule,Room room,List<Schedule> scheduleList) throws Exception {
 
         for(Schedule schedule1: scheduleList){
-            boolean cond1 = isDateInBetweenIncludingEndPoints(getDate(schedule1.getFromDate().toString()),getDate(schedule1.getToDate().toString()),getDate(schedule1.getFromDate().toString()));
-            boolean cond2 = isDateInBetweenIncludingEndPoints(getDate(schedule1.getFromDate().toString()),getDate(schedule1.getToDate().toString()),getDate(schedule1.getToDate().toString()));
+            boolean cond1 = isDateInBetweenIncludingEndPoints(getDate(schedule1.getFromDate().toString()),getDate(schedule1.getToDate().toString()),fromDate);
+            boolean cond2 = isDateInBetweenIncludingEndPoints(getDate(schedule1.getFromDate().toString()),getDate(schedule1.getToDate().toString()),toDate);
             if(cond1 || cond2){
                 throw new Exception("Cannot reserve because reservation already found for given date/time");
             }
