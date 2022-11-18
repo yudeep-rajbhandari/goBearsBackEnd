@@ -1,23 +1,37 @@
 package com.se.goBears.entity;
 
-import lombok.Data;
-
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Set;
 
-@Data
 @Entity
-public class Resource {
+public class Resource implements Serializable {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue
     private Long id;
 
-    private String name;
-    private boolean availability;
-    private WorkingCondition workingCondition;
+    private String resourceName;
     private ResourceType resourceType;
+    private WorkingCondition workingCondition;
+
+
+    public enum ResourceType {
+        INDOOR,
+        OUTDOOR
+    };
+
+    public enum WorkingCondition {
+        EXCELLENT,
+        GOOD,
+        FAIR
+    };
+
     @ManyToOne
-    private ResourceReservation resourceReservation;
+    private Room room;
+
+    @OneToMany
+    private Set<Reservations> roomReservations;
 
     public Long getId() {
         return id;
@@ -27,11 +41,48 @@ public class Resource {
         this.id = id;
     }
 
-    private enum WorkingCondition{
-        Good,Excellent,Old
+    public String getResourceName() {
+        return resourceName;
     }
 
-    private enum ResourceType{
-        Indoor,Outdoor
+    public void setResourceName(String resourceName) {
+        this.resourceName = resourceName;
     }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+    public Set<Reservations> getRoomReservations() {
+        return roomReservations;
+    }
+
+    public void setRoomReservations(Set<Reservations> roomReservations) {
+        this.roomReservations = roomReservations;
+    }
+
+    public ResourceType getResourceType() {
+        return resourceType;
+    }
+
+    public void setResourceType(ResourceType resourceType) {
+        this.resourceType = resourceType;
+    }
+
+    public WorkingCondition getWorkingCondition() {
+        return workingCondition;
+    }
+
+    public void setWorkingCondition(WorkingCondition workingCondition) {
+        this.workingCondition = workingCondition;
+    }
+
+    public Resource() {
+    }
+
+
 }

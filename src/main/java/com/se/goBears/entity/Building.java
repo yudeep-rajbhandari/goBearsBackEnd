@@ -1,4 +1,33 @@
 package com.se.goBears.entity;
 
-public class Building {
+import lombok.Data;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Set;
+
+@Data
+@Entity
+public class Building implements Serializable {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+    private String name;
+
+    @OneToOne
+    private Address address;
+
+    private Integer floors;
+
+    private Long latitude;
+
+    private Long longitude;
+
+    @OneToMany
+    private Set<Gate> gates;
+
+    @OneToMany
+    private Set<Room> rooms;
+
 }
