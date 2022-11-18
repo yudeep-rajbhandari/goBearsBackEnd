@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Entity
 public class Reservations {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
@@ -13,15 +14,18 @@ public class Reservations {
     private Integer bookedBy;
 
     private String fromDate;
+
     private String toDate;
 
     private long roomId;
 
     public long getRoomId() {
+
         return roomId;
     }
 
     public void setRoomId(long roomId) {
+
         this.roomId = roomId;
     }
 
@@ -29,6 +33,7 @@ public class Reservations {
     public enum Status{
         PENDING, DECLINED, APPROVED, ARCHIVED
     }
+
     private ReserveType reserveType;
     public enum ReserveType{
         Room, Resource

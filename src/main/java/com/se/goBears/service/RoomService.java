@@ -60,7 +60,7 @@ public class RoomService {
 
 
    public List<Room> findAllRoom(){
-        return roomRepository.findAll();
+        return roomRepository.findAll().stream().filter(j->j.getBuilding()!= null).collect(Collectors.toList());
    }
 
 
