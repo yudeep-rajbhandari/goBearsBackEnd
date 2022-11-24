@@ -41,4 +41,11 @@ public class ResourceController {
     }
 
 
+    @PutMapping("/editResource")
+    public Resource editResource(@RequestBody Resource resource){
+        return resourceService.editResource(resource);
+    }
+
+
+
 }

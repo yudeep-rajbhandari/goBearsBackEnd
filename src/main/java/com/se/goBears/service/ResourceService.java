@@ -59,4 +59,11 @@ public class ResourceService {
     }
 
 
+    public Resource editResource(Resource resource){
+        Resource resourceToEdit  = resourceRepo.findResourceById(resource.getId());
+        resourceToEdit.setResourceName(resource.getResourceName());
+        return resourceRepo.save(resourceToEdit);
+    }
+
+
 }
