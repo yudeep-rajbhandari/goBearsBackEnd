@@ -20,9 +20,9 @@ public class Building implements Serializable {
 
     private Integer floors;
 
-    private Long latitude;
+    private Double latitude;
 
-    private Long longitude;
+    private Double longitude;
 
     @OneToMany
     private Set<Gate> gates;
