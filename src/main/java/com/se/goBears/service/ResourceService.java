@@ -1,4 +1,4 @@
-package com.se.goBears.service;
+ package com.se.goBears.service;
 
 import com.se.goBears.entity.Resource;
 import com.se.goBears.entity.Room;
@@ -14,6 +14,9 @@ public class ResourceService {
 
     @Autowired
     private ResourceRepository resourceRepo;
+
+    @Autowired
+    private RoomService roomService;
 
     public List<Resource> getAllResource(){
         List<Resource> allResources= resourceRepo.findAll();
@@ -48,4 +51,10 @@ public class ResourceService {
         return resourceRepo.save(resource);
     }
 
+
+    public Resource addResource2(Resource resource){
+        Room room = roomService.findRoomById(resource.getRoom().getId());
+        resource.setRoom(room);
+        return resourceRepo.save(resource);
+    }
 }
