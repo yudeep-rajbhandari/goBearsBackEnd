@@ -52,34 +52,25 @@ public class RoomController {
         }
     }
 
-
-
     @PostMapping("/addRoom2")
     public Room addRoom(@RequestBody Room room) throws Exception {
         return roomService.addRoom(room);
     }
-
-
 
     @GetMapping("/findAllRoom")
     public List<Room> findAllRoom(){
         return roomService.findAllRoom();
     }
 
-
     @PutMapping("/updateRoom")
     public Room updateRoom(@RequestBody Room room){
         return roomService.updateRoom(room);
     }
 
-
-
     @GetMapping("/findAllClassRoom")
     public List<Room> findAllClassRoomByBuilding(@RequestParam Long buildlingId){
         return roomService.getAllClassRoomByBuilding(buildlingId);
     }
-
-
 
     @GetMapping("/findAllByBuildingId/{buildingId}")
     public List<Room> findAllByBuildingId(@PathVariable Long buildingId){

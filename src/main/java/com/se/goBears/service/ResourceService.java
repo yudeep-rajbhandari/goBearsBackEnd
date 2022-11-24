@@ -19,8 +19,8 @@ public class ResourceService {
     private RoomService roomService;
 
     public List<Resource> getAllResource(){
-        List<Resource> allResources= resourceRepo.findAll();
-        return allResources;
+        return  resourceRepo.findAll();
+
     };
 
     public  Resource getResourceByID(Long id){
@@ -57,4 +57,6 @@ public class ResourceService {
         resource.setRoom(room);
         return resourceRepo.save(resource);
     }
+
+
 }
