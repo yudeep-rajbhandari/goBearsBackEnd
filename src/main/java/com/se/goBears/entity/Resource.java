@@ -30,6 +30,7 @@ public class Resource implements Serializable {
     @ManyToOne
     private Room room;
 
+
     @OneToMany
     private Set<Reservations> roomReservations;
 

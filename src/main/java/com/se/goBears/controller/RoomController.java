@@ -1,4 +1,5 @@
-package com.se.goBears.controller;
+
+        package com.se.goBears.controller;
 
 import com.se.goBears.entity.Room;
 import com.se.goBears.service.RoomService;
@@ -75,6 +76,13 @@ public class RoomController {
 
     @GetMapping("/findAllClassRoom")
     public List<Room> findAllClassRoomByBuilding(@RequestParam Long buildlingId){
-            return roomService.getAllClassRoomByBuilding(buildlingId);
+        return roomService.getAllClassRoomByBuilding(buildlingId);
+    }
+
+
+
+    @GetMapping("/findAllByBuildingId/{buildingId}")
+    public List<Room> findAllByBuildingId(@PathVariable Long buildingId){
+        return roomService.findAllByBuildingId(buildingId);
     }
 }

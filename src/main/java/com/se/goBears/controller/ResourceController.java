@@ -29,4 +29,11 @@ public class ResourceController {
     }
 
 
+    @PostMapping("/addResource2")
+    public Resource addResource2(@RequestBody Resource resource){
+        return resourceService.addResource2(resource);
+    }
+
+
+
 }
