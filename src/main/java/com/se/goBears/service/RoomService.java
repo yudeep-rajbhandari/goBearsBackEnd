@@ -59,18 +59,18 @@ public class RoomService {
     }
 
 
-   public List<Room> findAllRoom(){
+    public List<Room> findAllRoom(){
         return roomRepository.findAll().stream().filter(j->j.getBuilding()!= null).collect(Collectors.toList());
-   }
+    }
 
 
-   public Room updateRoom(Room room){
+    public Room updateRoom(Room room){
         Room updateRoom = roomRepository.findRoomById(room.getId());
-       updateRoom.setName(room.getName());
-       updateRoom.setRoomType(room.getRoomType());
-       updateRoom.setIsBookable(room.isBookable());
-       return roomRepository.save(updateRoom);
-   }
+        updateRoom.setName(room.getName());
+        updateRoom.setRoomType(room.getRoomType());
+        updateRoom.setIsBookable(room.isBookable());
+        return roomRepository.save(updateRoom);
+    }
 
     public List<Room> getAllBookableRoom(){
         List<Room> roomList = roomRepository.findAll();
@@ -80,6 +80,17 @@ public class RoomService {
     public List<Room> getAllClassRoomByBuilding(Long buildingId){
         List<Room> roomList = roomRepository.findRoomByBuilding_IdAndRoomType(buildingId,Room.RoomType.classroom);
         return roomList;
+    }
+
+
+    public List<Room> findAllByBuildingId(Long buildingId){
+        return roomRepository.findAllByBuildingId(buildingId);
+    }
+
+
+
+    public Room findRoomById(Long roomId){
+        return roomRepository.findRoomById(roomId);
     }
 
 }
