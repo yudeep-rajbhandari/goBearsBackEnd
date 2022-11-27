@@ -93,4 +93,17 @@ public class RoomService {
         return roomRepository.findRoomById(roomId);
     }
 
+
+    public Room makeBookableFalse(Room room) throws Exception {
+        if (room==null){
+            throw new Exception("Room is null");
+        }
+        room.setIsBookable(false);
+        return roomRepository.save(room);
+    }
+
+    public List<Room> findAllBookableRoom(){
+        return roomRepository.findAllByIsBookableIsTrue();
+    }
+
 }
