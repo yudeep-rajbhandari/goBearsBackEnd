@@ -6,6 +6,8 @@ import com.se.goBears.service.AllotmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/api/allotment/")
@@ -18,5 +20,10 @@ public class AllotmentController {
     @PostMapping("addAllotment")
     public Allotment addAllotment(@RequestBody Allotment allotment) throws Exception {
         return allotmentService.addAllotment(allotment);
+    }
+
+    @GetMapping("/getAllAllotment")
+    public List<Allotment> getAllAllotment(){
+        return allotmentService.getAllAllotment();
     }
 }

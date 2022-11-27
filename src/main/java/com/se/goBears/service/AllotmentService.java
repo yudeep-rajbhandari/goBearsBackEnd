@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class AllotmentService {
@@ -28,5 +29,10 @@ public class AllotmentService {
         allotment.setFromDate(allotment.getFromDate());
         allotment.setToDate(allotment.getToDate());
         return allotmentRepository.save(allotment);
+    }
+
+
+    public List<Allotment> getAllAllotment(){
+        return allotmentRepository.findAll();
     }
 }
