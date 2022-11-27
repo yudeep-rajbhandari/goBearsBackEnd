@@ -80,4 +80,8 @@ public Building findBuildingById(Long buildingId){
 }
 
 
+public Integer getBuildingCount(){
+        return buildingRepository.findAll().size();
+}
+
 }

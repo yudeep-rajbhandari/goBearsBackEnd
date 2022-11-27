@@ -47,4 +47,10 @@ public class BuildingController {
         return buildingService.findBuildingById(buildingId);
     }
 
+
+    @GetMapping("/getBuildingCount")
+    public Integer getBuildingCount(){
+        return buildingService.getBuildingCount();
+    }
+
 }

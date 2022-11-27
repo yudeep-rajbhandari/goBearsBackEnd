@@ -82,4 +82,11 @@ public class RoomController {
     public List<Room> findAllBookableRoom(){
         return roomService.findAllBookableRoom();
     }
+
+
+    @GetMapping("/getRoomCount")
+    public Integer getRoomCount(){
+        return roomService.getRoomCount();
+    }
+
 }

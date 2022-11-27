@@ -106,4 +106,9 @@ public class RoomService {
         return roomRepository.findAllByIsBookableIsTrue();
     }
 
+
+    public Integer getRoomCount(){
+        return roomRepository.findAll().size();
+    }
+
 }

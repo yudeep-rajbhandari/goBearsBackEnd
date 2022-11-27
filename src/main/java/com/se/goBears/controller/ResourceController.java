@@ -40,5 +40,8 @@ public class ResourceController {
         return resourceService.getAllResource();
     }
 
-
+    @GetMapping("/getResourceCount")
+    public Integer getResourceCount(){
+        return resourceService.getResourceCount();
+    }
 }
