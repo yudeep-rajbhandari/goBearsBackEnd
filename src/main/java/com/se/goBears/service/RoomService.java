@@ -1,5 +1,6 @@
 package com.se.goBears.service;
 
+import com.se.goBears.entity.Building;
 import com.se.goBears.entity.Room;
 import com.se.goBears.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,6 +110,10 @@ public class RoomService {
 
     public Integer getRoomCount(){
         return roomRepository.findAll().size();
+    }
+
+    public List<Room> getRoomByBuildingId(Long buildingId){
+        return roomRepository.findAllByBuildingId(buildingId);
     }
 
 }

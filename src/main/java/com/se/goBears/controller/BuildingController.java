@@ -2,6 +2,7 @@ package com.se.goBears.controller;
 
 
 import com.se.goBears.entity.Building;
+import com.se.goBears.entity.Room;
 import com.se.goBears.repository.BuildingRepository;
 import com.se.goBears.service.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,5 +53,7 @@ public class BuildingController {
     public Integer getBuildingCount(){
         return buildingService.getBuildingCount();
     }
+
+
 
 }
