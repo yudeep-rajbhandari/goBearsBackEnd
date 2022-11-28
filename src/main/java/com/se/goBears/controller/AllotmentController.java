@@ -18,7 +18,7 @@ public class AllotmentController {
     private AllotmentService allotmentService;
 
     @PostMapping("addAllotment")
-    public Allotment addAllotment(@RequestBody Allotment allotment) throws Exception {
+    public Allotment addAllotment(@RequestBody Allotment allotment)  {
         return allotmentService.addAllotment(allotment);
     }
 

@@ -3,6 +3,7 @@ package com.se.goBears.service;
 import com.se.goBears.entity.Allotment;
 import com.se.goBears.entity.Room;
 import com.se.goBears.entity.User;
+import com.se.goBears.errors.CustomException;
 import com.se.goBears.repository.AllotmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,20 +24,23 @@ public class AllotmentService {
     private RoomService roomService;
 
 
-    public Allotment addAllotment(Allotment allotment) throws Exception {
-        if (allotment.getUser()==null){
-            throw new Exception("User can't be null");
+    public Allotment addAllotment(Allotment allotment) {
+        if (allotment.getUser().getId()==null || allotment.getUser().getId()==0) {
+            throw new CustomException("Select User");
         }
-        if (allotment.getRoom()==null){
-            throw new Exception("Room can't be null");
+        if (allotment.getRoom().getId()==null || allotment.getRoom().getId()==0){
+            throw new CustomException("Select room ");
         }
-        allotment.setUser(userService.findUserById(allotment.getUser().getId()));
-        allotment.setRoom(roomService.findRoomById(allotment.getRoom().getId()));
-        allotment.setFromDate(allotment.getFromDate());
-        allotment.setToDate(allotment.getToDate());
-        return allotmentRepository.save(allotment);
-    }
+        if (allotment.getFromDate()==null){
+            throw new CustomException("From Date can't be null");
+        }
 
+    allotment.setUser(userService.findUserById(allotment.getUser().getId()));
+    allotment.setRoom(roomService.findRoomById(allotment.getRoom().getId()));
+    allotment.setFromDate(allotment.getFromDate());
+    allotment.setToDate(allotment.getToDate());
+    return allotmentRepository.save(allotment);
+}
 
     public List<Allotment> getAllAllotment(){
         return allotmentRepository.findAll();
