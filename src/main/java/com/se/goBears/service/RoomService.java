@@ -116,4 +116,9 @@ public class RoomService {
         return roomRepository.findAllByBuildingId(buildingId);
     }
 
+    public List<Room> getBookableRoomByBuilding(Long buildingId){
+
+        return roomRepository.findAllByBuildingIdAndIsBookableIsTrue(buildingId);
+    }
+
 }

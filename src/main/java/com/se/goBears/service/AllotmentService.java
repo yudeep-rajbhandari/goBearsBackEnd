@@ -24,6 +24,12 @@ public class AllotmentService {
 
 
     public Allotment addAllotment(Allotment allotment) throws Exception {
+        if (allotment.getUser()==null){
+            throw new Exception("User can't be null");
+        }
+        if (allotment.getRoom()==null){
+            throw new Exception("Room can't be null");
+        }
         allotment.setUser(userService.findUserById(allotment.getUser().getId()));
         allotment.setRoom(roomService.findRoomById(allotment.getRoom().getId()));
         allotment.setFromDate(allotment.getFromDate());

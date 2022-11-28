@@ -23,6 +23,6 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
 
     List<Room> findAllByIsBookableIsTrue();
 
-
+List<Room> findAllByBuildingIdAndIsBookableIsTrue(Long buildingId);
 
 }
