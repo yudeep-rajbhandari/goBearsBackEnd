@@ -59,6 +59,10 @@ public class ResourceService {
         return resourceRepo.save(resource);
     }
 
+    public List<Resource> getResourceByRoom(Long id){
+        return resourceRepo.findAllByRoomOrderById(roomService.findRoomById(id));
+    }
+
 
     public Integer getResourceCount(){
         return resourceRepo.findAll().size();
