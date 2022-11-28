@@ -3,9 +3,11 @@ package com.se.goBears.service;
 import com.se.goBears.dao.BuildingDao;
 import com.se.goBears.entity.Address;
 import com.se.goBears.entity.Building;
+import com.se.goBears.entity.Gate;
 import com.se.goBears.entity.Room;
 import com.se.goBears.repository.AddressRepository;
 import com.se.goBears.repository.BuildingRepository;
+import com.se.goBears.repository.GateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,8 @@ public class BuildingService {
 
     @Autowired
     public AddressRepository addressRepository;
+    @Autowired
+    public GateRepository gateRepository;
 
     @Autowired
     private BuildingRepository buildingRepository;
@@ -45,8 +49,8 @@ public class BuildingService {
 
 
     public Building addBuilding(Building building){
-        Address address = addressRepository.save(building.getAddress());
-        building.setAddress(address);
+        building.setAddress(addressRepository.save(building.getAddress()));
+        building.setGate(gateRepository.save(building.getGate()));
         buildingRepository.save(building);
         return building;
     }
@@ -75,5 +79,9 @@ public Building findBuildingById(Long buildingId){
         return buildingRepository.findBuildingById(buildingId);
 }
 
+
+public Integer getBuildingCount(){
+        return buildingRepository.findAll().size();
+}
 
 }

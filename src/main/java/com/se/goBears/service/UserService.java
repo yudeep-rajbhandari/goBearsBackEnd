@@ -27,4 +27,13 @@ public class UserService {
             return  userRepository.findUserByEmail(email);
           }
 
+
+          public List<User> findAllUser(){
+              return userRepository.findAll();
+          }
+
+          public User findUserById(Long id){
+              return userRepository.findUserById(id);
+          }
+
 }

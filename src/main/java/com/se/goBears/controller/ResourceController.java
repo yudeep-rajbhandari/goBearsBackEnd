@@ -40,5 +40,13 @@ public class ResourceController {
         return resourceService.getAllResource();
     }
 
+    @GetMapping("/getResourceCount")
+    public Integer getResourceCount(){
+        return resourceService.getResourceCount();
+    }
 
+    @GetMapping("/getResourceByRoom/{roomId}")
+    public List<Resource> getResourceByRoom(@PathVariable Long roomId){
+        return resourceService.getResourceByRoom(roomId);
+    }
 }
