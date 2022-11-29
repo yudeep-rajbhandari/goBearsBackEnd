@@ -2,6 +2,7 @@ package com.se.goBears.controller;
 
 
 import com.se.goBears.entity.Building;
+import com.se.goBears.entity.Gate;
 import com.se.goBears.entity.Room;
 import com.se.goBears.repository.BuildingRepository;
 import com.se.goBears.service.BuildingService;
@@ -55,5 +56,9 @@ public class BuildingController {
     }
 
 
+    @PutMapping("/addGate/{buildingId}")
+    public Building addGate(@RequestBody Gate gate, @PathVariable Long buildingId){
+        return buildingService.addGate(gate,buildingId);
+    }
 
 }

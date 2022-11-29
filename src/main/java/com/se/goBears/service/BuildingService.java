@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -50,7 +52,7 @@ public class BuildingService {
 
     public Building addBuilding(Building building){
         building.setAddress(addressRepository.save(building.getAddress()));
-        building.setGate(gateRepository.save(building.getGate()));
+
         buildingRepository.save(building);
         return building;
     }
@@ -84,4 +86,11 @@ public Integer getBuildingCount(){
         return buildingRepository.findAll().size();
 }
 
+
+public Building addGate(Gate gate, Long buildingId){
+    Building building = findBuildingById(buildingId);
+        gateRepository.save(gate);
+        building.getGate().add(gate);
+        return buildingRepository.save(building);
+}
 }
