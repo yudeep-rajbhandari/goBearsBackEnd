@@ -16,4 +16,8 @@ public class Gate implements Serializable {
     private String name;
     private Double latitude;
     private Double longitude;
+    private String picture;
+    private String elevator;
+    private String elevatorPicture;
+
 }
