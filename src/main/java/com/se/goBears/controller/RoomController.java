@@ -100,4 +100,9 @@ public class RoomController {
     public List<Room> getBookableRoomByBuilding(@PathVariable Long buildingId){
         return roomService.getBookableRoomByBuilding(buildingId);
     }
+
+    @GetMapping("/getRoomById/{roomId}")
+    public Room getRoomById(@PathVariable Long roomId){
+        return roomService.findRoomById(roomId);
+    }
 }
