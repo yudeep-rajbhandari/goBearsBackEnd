@@ -26,4 +26,10 @@ public class AllotmentController {
     public List<Allotment> getAllAllotment(){
         return allotmentService.getAllAllotment();
     }
+
+
+    @GetMapping("/getMyAllotment/{userId}")
+    public List<Allotment> getMyAllotment(@PathVariable Long userId){
+        return allotmentService.getMyAllotment(userId);
+    }
 }

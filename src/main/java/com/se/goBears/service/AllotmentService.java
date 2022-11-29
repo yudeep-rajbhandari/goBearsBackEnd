@@ -45,4 +45,9 @@ public class AllotmentService {
     public List<Allotment> getAllAllotment(){
         return allotmentRepository.findAll();
     }
+
+
+    public List<Allotment> getMyAllotment(Long userId){
+        return allotmentRepository.findAllotmentsByUser(userService.findUserById(userId));
+    }
 }
