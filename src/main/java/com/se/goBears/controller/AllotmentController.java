@@ -29,9 +29,10 @@ public class AllotmentController {
     private AllotmentService allotmentService;
 
     /**
-     * <p>his method adds an allotment record.</p>T
-     * @param allotment A request-body for an allotment.
-     * @return The saved allotment.
+     * <p>This method gets an allotment object, adds the allotment record and returns the
+     * saved object.</p>T
+     * @param allotment a request body for an allotment.
+     * @return the saved allotment.
      */
     @PostMapping("addAllotment")
     public Allotment addAllotment(@RequestBody Allotment allotment)  {
@@ -39,9 +40,9 @@ public class AllotmentController {
     }
 
     /**
-     * <p>This method gets all allotment.</p>
+     * <p>This method returns a list of all allotments.</p>
      * @param
-     * @return List of all allotments.
+     * @return list of all allotments.
      */
     @GetMapping("/getAllAllotment")
     public List<Allotment> getAllAllotment(){
