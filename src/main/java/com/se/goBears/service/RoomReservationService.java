@@ -1,10 +1,12 @@
 package com.se.goBears.service;
 
 
+import com.se.goBears.config.jms.JmsOrderMessagingService;
 import com.se.goBears.entity.Reservations;
 import com.se.goBears.entity.Room;
 import com.se.goBears.repository.ReservationRepository;
 import com.se.goBears.repository.RoomRepository;
+import com.se.goBears.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,9 @@ public class RoomReservationService {
 
     @Autowired
     private ReservationRepository reservationRepository;
+
+    @Autowired
+    private JmsOrderMessagingService messagingService;
 
     public Set<Reservations> getRoomReservation(Long roomId){
         Room room = roomDao.findById(roomId).get();
@@ -75,16 +80,22 @@ public class RoomReservationService {
     public Reservations acceptRoomReservation(Long id){
         Reservations roomReservation = reservationRepository.findReservationsById(id);
         roomReservation.setStatus(Reservations.Status.APPROVED);
+        sendEmail(roomReservation);
         return reservationRepository.save(roomReservation);
     }
     public Reservations declineRoomReservation(Long id){
         Reservations roomReservation = reservationRepository.findReservationsById(id);
         roomReservation.setStatus(Reservations.Status.DECLINED);
+        sendEmail(roomReservation);
         return reservationRepository.save(roomReservation);
     }
     public Reservations archiveRoomReservation(Long id){
         Reservations roomReservation = reservationRepository.findReservationsById(id);
         roomReservation.setStatus(Reservations.Status.ARCHIVED);
+        sendEmail(roomReservation);
         return reservationRepository.save(roomReservation);
+    }
+    public void sendEmail(Reservations reservations){
+        messagingService.sendOrder(reservations);
     }
 }
