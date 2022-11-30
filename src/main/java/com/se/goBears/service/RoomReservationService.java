@@ -47,7 +47,7 @@ public class RoomReservationService {
             }
 
         }
-        reservations.setReserveType(Reservations.ReserveType.Room);
+        reservations.setReserveType(Reservations.ReserveType.ROOM);
         reservations.setRoomId(room.getId());
         Reservations roomReservation = reservationRepository.save(reservations);
         room.getRoomReservation().add(roomReservation);
