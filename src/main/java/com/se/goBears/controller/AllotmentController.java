@@ -9,11 +9,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
+
 @RestController
 @RequestMapping("/api/allotment/")
 @CrossOrigin(origins = "http://localhost:3000")
+
 /**
- * Allotment Controller: also see the allotment service in the frontend
+ * <p>This controller handles all the API requests for Allotment</p>
+ * @param
+ * @return
+ * @see
+ * @throws
+ * @version
  */
 public class AllotmentController {
 
