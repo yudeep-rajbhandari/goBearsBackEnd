@@ -24,6 +24,11 @@ public class AllotmentService {
     private RoomService roomService;
 
 
+    /**
+     * This method adds allotment.
+     * @param allotment
+     * @return
+     */
     public Allotment addAllotment(Allotment allotment) {
         if (allotment.getUser().getId()==null || allotment.getUser().getId()==0) {
             throw new CustomException("Select User");
@@ -42,11 +47,21 @@ public class AllotmentService {
     return allotmentRepository.save(allotment);
 }
 
+
+    /**
+     *
+     * @return
+     */
     public List<Allotment> getAllAllotment(){
         return allotmentRepository.findAll();
     }
 
 
+    /**
+     *
+     * @param userId
+     * @return
+     */
     public List<Allotment> getMyAllotment(Long userId){
         return allotmentRepository.findAllotmentsByUser(userService.findUserById(userId));
     }
