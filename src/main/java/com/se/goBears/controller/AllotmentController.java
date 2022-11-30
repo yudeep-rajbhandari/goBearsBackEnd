@@ -26,7 +26,8 @@ public class AllotmentController {
      * <p>This method gets an allotment object, adds the allotment record and returns the
      * saved object.</p>
      * @param allotment a request body for an allotment.
-     * @return the saved allotment.
+     * @return the saved allotment through Allotment Service.
+     * @see AllotmentService
      */
     @PostMapping("addAllotment")
     public Allotment addAllotment(@RequestBody Allotment allotment)  {
@@ -36,7 +37,8 @@ public class AllotmentController {
     /**
      * <p>This method returns a list of all allotments.</p>
      * @param
-     * @return list of all allotments.
+     * @return list of all allotments through Allotment Service.
+     * @see AllotmentService
      */
     @GetMapping("/getAllAllotment")
     public List<Allotment> getAllAllotment(){
@@ -46,7 +48,8 @@ public class AllotmentController {
     /**
      * <p>This method gets a userid and returns a list of allotments associated with the user.</p>
      * @param userId the userid for the allotment.
-     * @return a list of the allotment for a user.
+     * @return a list of the allotment for a user through Allotment Service.
+     * @see AllotmentService
      */
     @GetMapping("/getMyAllotment/{userId}")
     public List<Allotment> getMyAllotment(@PathVariable Long userId){

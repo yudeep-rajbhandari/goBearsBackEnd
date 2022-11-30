@@ -12,17 +12,37 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * This controller class handles the API requests related to Building class. It handles request to add new building,
+ * get all buildings, edit building information, find a building by an id, get number of buildings and addition of
+ * a building gate.
+ */
 @RestController
 @RequestMapping("/api/building")
 @CrossOrigin(origins = "*")
 public class BuildingController {
 
+    /**
+     * This is an autowire to Building Service.
+     * @see BuildingService
+     */
     @Autowired
     private BuildingService buildingService;
 
+    /**
+     * This is an autowire to Building Service.
+     * @see BuildingRepository
+     */
     @Autowired
     private BuildingRepository buildingRepository;
 
+    /**
+     * This method handles the add building request. It takes a building request body, authenticates the user
+     * role to be admin and returns the added building object.
+     * @param building is a building request body.
+     * @return the saved building object through Building Service.
+     * @see BuildingService
+     */
     @PostMapping("/addBuilding")
     @PreAuthorize("hasRole('ADMIN')")
     public Building addBuilding( @RequestBody Building building){
