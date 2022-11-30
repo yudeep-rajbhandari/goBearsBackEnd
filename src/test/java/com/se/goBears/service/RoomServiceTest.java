@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
@@ -21,6 +22,8 @@ public class RoomServiceTest {
         room.setIsBookable(true);
         room.setRoomType(Room.RoomType.CLASSROOM);
         Room room1 = roomService.addRoom(room);
+        assertEquals(room1.getName(),"Test Room");
+
         roomService.deleteroomById(room1.getId());
 
     }
@@ -37,5 +40,18 @@ public class RoomServiceTest {
         });
         roomService.deleteroomById(room1.getId());
 
+    }
+
+    @Test
+    public void updateRoomTest() throws Exception {
+        Room room = new Room();
+        room.setName("Test Room");
+        room.setIsBookable(true);
+        room.setRoomType(Room.RoomType.CLASSROOM);
+        Room room1 = roomService.addRoom(room);
+        room1.setName("Changed name");
+        Room room2 = roomService.updateRoom(room1);
+        assertEquals(room2.getName(),"Changed name");
+        roomService.deleteroomById(room1.getId());
     }
 }
