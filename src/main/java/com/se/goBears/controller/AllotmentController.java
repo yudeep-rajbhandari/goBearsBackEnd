@@ -30,13 +30,11 @@ public class AllotmentController {
     private AllotmentService allotmentService;
 
     @PostMapping("addAllotment")
-    @ApiOperation(value = "", authorizations = { @Authorization(value="jwtToken") })
     public Allotment addAllotment(@RequestBody Allotment allotment)  {
         return allotmentService.addAllotment(allotment);
     }
 
     @GetMapping("/getAllAllotment")
-    @ApiOperation(value = "", authorizations = { @Authorization(value="jwtToken") })
     public List<Allotment> getAllAllotment(){
         return allotmentService.getAllAllotment();
     }
