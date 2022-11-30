@@ -54,4 +54,18 @@ public class RoomServiceTest {
         assertEquals(room2.getName(),"Changed name");
         roomService.deleteroomById(room1.getId());
     }
+
+    @Test
+    public void makeBookableFalseTest() throws Exception {
+        Room room = new Room();
+        room.setName("Test Room");
+        room.setIsBookable(true);
+        room.setRoomType(Room.RoomType.CLASSROOM);
+        Room room1 = roomService.addRoom(room);
+
+        Room room2 = roomService.makeBookableFalse(room1);
+        assertEquals(room2.isBookable(),false);
+        roomService.deleteroomById(room1.getId());
+
+    }
 }
