@@ -88,12 +88,25 @@ public class BuildingController {
     }
 
 
+    /**
+     * This method returns the total number of buildings created.
+     * @return an integer number for the number of buildings.
+     */
     @GetMapping("/getBuildingCount")
     public Integer getBuildingCount(){
         return buildingService.getBuildingCount();
     }
 
 
+    /**
+     * This method takes a request body Gate and a building Id as an input and assigns the
+     * provided gate to the building.
+     * @param gate is a gate object.
+     * @param buildingId is the id of the building to be associated with the gate.
+     * @return details of the building with associated gate information.
+     * @see Gate
+     * @see Building
+     */
     @PutMapping("/addGate/{buildingId}")
     public Building addGate(@RequestBody Gate gate, @PathVariable Long buildingId){
         return buildingService.addGate(gate,buildingId);
