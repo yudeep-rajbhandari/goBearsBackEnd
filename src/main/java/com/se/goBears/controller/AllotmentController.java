@@ -32,4 +32,10 @@ public class AllotmentController {
     public List<Allotment> getMyAllotment(@PathVariable Long userId){
         return allotmentService.getMyAllotment(userId);
     }
+
+    @DeleteMapping("/deleteAllotment/{allotmentId}")
+    public String deleteAllotment(@PathVariable Long allotmentId){
+         allotmentService.deleteAllotment(allotmentId);
+         return "deleted allotment with id "+allotmentId;
+    }
 }

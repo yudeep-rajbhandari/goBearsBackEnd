@@ -50,4 +50,8 @@ public class AllotmentService {
     public List<Allotment> getMyAllotment(Long userId){
         return allotmentRepository.findAllotmentsByUser(userService.findUserById(userId));
     }
+
+    public void deleteAllotment(Long allotmentId) {
+        allotmentRepository.deleteById(allotmentId);
+    }
 }

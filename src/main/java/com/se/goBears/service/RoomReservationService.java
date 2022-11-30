@@ -45,7 +45,6 @@ public class RoomReservationService {
             if(cond1 || cond2 || cond3 || cond4){
                 throw new Exception("Cannot reserve because reservation already found for given date/time");
             }
-
         }
         reservations.setReserveType(Reservations.ReserveType.Room);
         reservations.setRoomId(room.getId());
@@ -53,7 +52,6 @@ public class RoomReservationService {
         room.getRoomReservation().add(roomReservation);
         room.setId(room.getId());
         return roomDao.save(room);
-
     }
     public Date getDate(String a){
         try{
