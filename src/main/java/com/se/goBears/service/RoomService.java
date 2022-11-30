@@ -78,7 +78,7 @@ public class RoomService {
     }
 
     public List<Room> getAllClassRoomByBuilding(Long buildingId){
-        List<Room> roomList = roomRepository.findRoomByBuilding_IdAndRoomType(buildingId,Room.RoomType.CLASSROOM);
+        List<Room> roomList = roomRepository.findRoomByBuildingIdAndRoomType(buildingId,Room.RoomType.CLASSROOM);
         return roomList;
     }
 

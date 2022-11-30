@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
 
-    List<Schedule> findScheduleByRoom_IdAndFromDateGreaterThan(Long roomId, Date fromdate);
+    List<Schedule> findScheduleByRoomIdAndFromDateGreaterThan(Long roomId, Date fromdate);
 
     List<Schedule> findScheduleByFromDateGreaterThanAndToDateLessThan(Date fromdate,Date toDate);
 }
