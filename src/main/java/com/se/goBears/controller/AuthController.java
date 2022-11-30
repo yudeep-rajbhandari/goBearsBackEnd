@@ -69,6 +69,8 @@ public class AuthController {
      * and returns user details.
      * @param loginRequest login request body for the user that is to be authenticated.
      * @return the user details for the authenticated user.
+     * @see JwtUtils
+     * @see AuthenticationManager
      */
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {

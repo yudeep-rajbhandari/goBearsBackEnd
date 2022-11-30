@@ -49,13 +49,26 @@ public class BuildingController {
 
         return buildingService.addBuilding(building);
     }
+
+    /**
+     * This method handles the get all buildings request. It returns a list of all buildings.
+     * @param
+     * @return a list of all buildings.
+     * @see BuildingService
+     */
     @GetMapping("/getAllBuilding")
 //    @PreAuthorize("hasRole('ADMIN')")
     public List<Building> getAllBuilding(){
         return buildingService.getAllBuilding();
     }
 
-
+    /**
+     * This method handles the edit request for a building. It takes a new building request body, authenticates
+     * the user role as ADMIN and returns the edited building object.
+     * @param building is building object with all the details required to be edited.
+     * @return a object body of edited building.
+     * @see BuildingService
+     */
     @PutMapping("/updateBuilding")
     @PreAuthorize("hasRole('ADMIN')")
     public Building editBuilding(@RequestBody Building building){
@@ -63,6 +76,11 @@ public class BuildingController {
     }
 
 
+    /**
+     * This method takes a building Id as a parameter and returns the building object identified by the Id.
+     * @param buildingId  is the id of the building to be searched.
+     * @return an object of the building.
+     */
     @GetMapping("/findBuildingById/{buildingId}")
     @PreAuthorize("hasRole('ADMIN')")
     public Building findBuildingById(@PathVariable Long buildingId){
