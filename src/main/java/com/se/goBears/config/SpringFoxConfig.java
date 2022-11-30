@@ -60,6 +60,6 @@ public class SpringFoxConfig {
     }
 
     private ApiKey apiKey() {
-        return new ApiKey("jwtToken", "Authorization", "header");
+        return new ApiKey("JWT", "Authorization", "header");
     }
 }
