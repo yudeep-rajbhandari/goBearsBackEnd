@@ -30,7 +30,7 @@ public class AllotmentController {
 
     /**
      * <p>This method gets an allotment object, adds the allotment record and returns the
-     * saved object.</p>T
+     * saved object.</p>
      * @param allotment a request body for an allotment.
      * @return the saved allotment.
      */
