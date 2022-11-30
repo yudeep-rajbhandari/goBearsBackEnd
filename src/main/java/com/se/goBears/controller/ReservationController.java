@@ -33,7 +33,8 @@ public class ReservationController {
     /**
      * This method accepts a room id and a reservation body and creates the requested reservation if all the dates
      * criteria are matched.
-     * @param id is the id of the room to be associated to the reservation.
+     *
+     * @param id           is the id of the room to be associated to the reservation.
      * @param reservations is the request reservation to be created for the room.
      * @return room object with associated reservation details.
      * @throws Exception if a reservation conflict occurs.
@@ -52,6 +53,7 @@ public class ReservationController {
 
     /**
      * This method takes a room id and returns a set of reservations associated with the room.
+     *
      * @param id is the room id.
      * @return a set of reservations associated with the room.
      * @see RoomReservationService
@@ -63,6 +65,7 @@ public class ReservationController {
 
     /**
      * This method takes a user id as an input and generates all reservations associated with the user.
+     *
      * @param id is the id of the user to generate associated reservations.
      * @return a list of reservation associated to the user.
      */
@@ -74,6 +77,7 @@ public class ReservationController {
 
     /**
      * This method returns all the reservations.
+     *
      * @return a list of all reservations.
      */
     @GetMapping("/getAllRoomReservation")
@@ -83,6 +87,7 @@ public class ReservationController {
 
     /**
      * This method takes a reservation id as input and alters the reservation status to APPROVED.
+     *
      * @param id is the id of the reservation.
      * @return the updated reservation object.
      */
@@ -93,6 +98,7 @@ public class ReservationController {
 
     /**
      * This method takes a reservation id as input and alters the reservation status to DECLINED.
+     *
      * @param id is the id of the reservation.
      * @return the updated reservation object.
      */
@@ -103,6 +109,7 @@ public class ReservationController {
 
     /**
      * This method takes a reservation id as input and alters the reservation status to ARCHIVED.
+     *
      * @param id is the id of the reservation.
      * @return the updated reservation object.
      */
@@ -113,6 +120,7 @@ public class ReservationController {
 
     /**
      * This method returns all the reservations associated with a user.
+     *
      * @param userId is the id of the user.
      * @return a list of reservations associated with the user.
      * @see ReservationService
@@ -124,6 +132,7 @@ public class ReservationController {
 
     /**
      * This method takes a reservation id as input and alters the reservation status to CANCELED.
+     *
      * @param id is the id of the reservation.
      * @return the updated reservation object.
      */
