@@ -65,8 +65,8 @@ public class AuthController {
     JwtUtils jwtUtils;
 
     /**
-     * <p>For a valid request for an authentication, the method handles user authentication
-     * and returns user details.</p>
+     * For a valid request for an authentication, the method handles user authentication
+     * and returns user details.
      * @param loginRequest login request body for the user that is to be authenticated.
      * @return the user details for the authenticated user.
      */
@@ -92,10 +92,10 @@ public class AuthController {
     }
 
     /**
-     * <p>This method handles the user signup request. It handles user and roles creation.
-     * Exception will be thrown if the username and email are not unique.</p>
+     * This method handles the user signup request. It handles user and roles creation.
+     * Exception will be thrown if the username and email are not unique.
      * @param signUpRequest signup request body with user details.
-     * @return a message response.
+     * @return a message response for successful signup or error..
      * @throws RuntimeException if user assigned roles is not found.
      */
     @PostMapping("/signup")
