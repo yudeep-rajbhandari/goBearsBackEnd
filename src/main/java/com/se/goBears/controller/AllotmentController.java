@@ -12,6 +12,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/allotment/")
 @CrossOrigin(origins = "http://localhost:3000")
+/**
+ * Allotment Controller: also see the allotment service in the frontend
+ */
 public class AllotmentController {
 
     @Autowired
