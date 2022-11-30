@@ -2,6 +2,7 @@ package com.se.goBears.controller;
 
 import com.se.goBears.entity.Reservations;
 import com.se.goBears.entity.Room;
+import com.se.goBears.service.ReservationService;
 import com.se.goBears.service.RoomReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -15,11 +16,14 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/api/reservation")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 public class ReservationController {
 
     @Autowired
     private RoomReservationService roomReservationService;
+
+    @Autowired
+    private ReservationService reservationService;
 
     @PostMapping("/room/{id}")
     public ResponseEntity reserveRoom(@PathVariable Long id, @RequestBody Reservations reservations ) throws Exception {
@@ -62,4 +66,15 @@ public class ReservationController {
     public Reservations archiveRoomReservation(@PathVariable Long id){
         return roomReservationService.archiveRoomReservation(id);
     }
+
+    @GetMapping("/getMyReservation/{userId}")
+    public List<Reservations> getMyReservation(@PathVariable Long userId){
+        return reservationService.getMyReservation(userId);
+    }
+
+    @PutMapping("/cancelReservation/{id}")
+    public Reservations cancelReservation(@PathVariable Long id){
+        return reservationService.cancelReservation(id);
+    }
+
 }

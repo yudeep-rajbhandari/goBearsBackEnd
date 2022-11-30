@@ -25,7 +25,7 @@ public class Building implements Serializable {
     private Double longitude;
 
     @OneToMany
-    private Set<Gate> gates;
+    private Set<Gate> gate;
 
     @OneToMany
     private Set<Room> rooms;

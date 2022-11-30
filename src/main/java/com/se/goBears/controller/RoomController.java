@@ -1,9 +1,11 @@
 
         package com.se.goBears.controller;
 
+import com.se.goBears.entity.Building;
 import com.se.goBears.entity.Room;
 import com.se.goBears.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.info.ProjectInfoProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/room")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 public class RoomController {
     @Autowired
     private RoomService roomService;
@@ -75,5 +77,32 @@ public class RoomController {
     @GetMapping("/findAllByBuildingId/{buildingId}")
     public List<Room> findAllByBuildingId(@PathVariable Long buildingId){
         return roomService.findAllByBuildingId(buildingId);
+    }
+
+
+    @GetMapping("/allBookableRoom")
+    public List<Room> findAllBookableRoom(){
+        return roomService.findAllBookableRoom();
+    }
+
+
+    @GetMapping("/getRoomCount")
+    public Integer getRoomCount(){
+        return roomService.getRoomCount();
+    }
+
+    @GetMapping("/getRoomByBuildingId/{buildingId}")
+    public List<Room> getRoomByBuildingId(@PathVariable Long buildingId){
+        return roomService.getRoomByBuildingId(buildingId);
+    }
+
+    @GetMapping("/getBookableRoomByBuilding/{buildingId}")
+    public List<Room> getBookableRoomByBuilding(@PathVariable Long buildingId){
+        return roomService.getBookableRoomByBuilding(buildingId);
+    }
+
+    @GetMapping("/getRoomById/{roomId}")
+    public Room getRoomById(@PathVariable Long roomId){
+        return roomService.findRoomById(roomId);
     }
 }

@@ -3,30 +3,21 @@ package com.se.goBears.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @Entity
-public class Gate {
+public class Gate implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue
     private Long id;
 
     private String name;
+    private Double latitude;
+    private Double longitude;
+    private String picture;
+    private String elevator;
+    private String elevatorPicture;
 
-    private Long latitude;
-
-    private long longitude;
-
-    private CardinalDirection cardinalDirection;
-
-    @OneToOne
-    private Building building;
-
-
-
-    private enum CardinalDirection{
-        North,South,East,West
-    }
 }

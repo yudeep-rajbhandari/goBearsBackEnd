@@ -52,17 +52,20 @@ public class ResourceService {
     }
 
 
+
     public Resource addResource2(Resource resource){
         Room room = roomService.findRoomById(resource.getRoom().getId());
         resource.setRoom(room);
         return resourceRepo.save(resource);
     }
 
+    public List<Resource> getResourceByRoom(Long id){
+        return resourceRepo.findAllByRoomOrderById(roomService.findRoomById(id));
+    }
 
-    public Resource editResource(Resource resource){
-        Resource resourceToEdit  = resourceRepo.findResourceById(resource.getId());
-        resourceToEdit.setResourceName(resource.getResourceName());
-        return resourceRepo.save(resourceToEdit);
+
+    public Integer getResourceCount(){
+        return resourceRepo.findAll().size();
     }
 
 

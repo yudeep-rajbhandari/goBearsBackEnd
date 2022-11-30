@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/resource")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 public class ResourceController {
 
     @Autowired
@@ -40,12 +40,13 @@ public class ResourceController {
         return resourceService.getAllResource();
     }
 
-
-    @PutMapping("/editResource")
-    public Resource editResource(@RequestBody Resource resource){
-        return resourceService.editResource(resource);
+    @GetMapping("/getResourceCount")
+    public Integer getResourceCount(){
+        return resourceService.getResourceCount();
     }
 
-
-
+    @GetMapping("/getResourceByRoom/{roomId}")
+    public List<Resource> getResourceByRoom(@PathVariable Long roomId){
+        return resourceService.getResourceByRoom(roomId);
+    }
 }

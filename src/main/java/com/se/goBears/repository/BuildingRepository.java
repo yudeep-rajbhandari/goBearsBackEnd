@@ -13,4 +13,6 @@ import java.util.List;
 public interface BuildingRepository extends CrudRepository<Building, Long> {
     Building findBuildingById(Long buildingId);
 
+    List<Building> findAll();
+
 }
