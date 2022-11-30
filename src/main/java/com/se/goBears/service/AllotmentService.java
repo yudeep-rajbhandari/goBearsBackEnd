@@ -12,6 +12,9 @@ import java.util.Date;
 import java.util.List;
 
 @Service
+/**
+ * This is the class for all the Allotment
+ */
 public class AllotmentService {
 
     @Autowired
