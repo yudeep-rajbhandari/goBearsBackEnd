@@ -48,7 +48,7 @@ public class BuildingService {
         return building;
     }
 public List<Building> getAllBuilding(){
-    return (List<Building>) buildingRepository.findAll();
+    return  buildingRepository.findAll();
 }
 
 
