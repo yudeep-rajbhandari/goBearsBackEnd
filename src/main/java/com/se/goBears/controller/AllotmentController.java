@@ -49,9 +49,9 @@ public class AllotmentController {
     }
 
     /**
-     * <p>This method an allotment for a user.</p>
-     * @param userId The userid for the allotment.
-     * @return List of the allotment for a user.
+     * <p>This method gets a userid and returns a list of allotments associated with the user.</p>
+     * @param userId the userid for the allotment.
+     * @return a list of the allotment for a user.
      */
     @GetMapping("/getMyAllotment/{userId}")
     public List<Allotment> getMyAllotment(@PathVariable Long userId){
