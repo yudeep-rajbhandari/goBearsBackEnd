@@ -9,10 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Service
 public class MailService {
-
     @Autowired
     private MailgunMessagesApi mailgunMessagesApi;
-    @Value("${mailgun.domain:default}")
+    @Value("${MAILGUN_DOMAIN}")
     private String domain;
     @GetMapping("/sendemail")
     public String sendEmail(String message,String email){
