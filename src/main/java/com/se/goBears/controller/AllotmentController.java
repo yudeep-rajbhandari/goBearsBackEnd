@@ -3,6 +3,8 @@ package com.se.goBears.controller;
 
 import com.se.goBears.entity.Allotment;
 import com.se.goBears.service.AllotmentService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,11 +30,13 @@ public class AllotmentController {
     private AllotmentService allotmentService;
 
     @PostMapping("addAllotment")
+    @ApiOperation(value = "", authorizations = { @Authorization(value="jwtToken") })
     public Allotment addAllotment(@RequestBody Allotment allotment)  {
         return allotmentService.addAllotment(allotment);
     }
 
     @GetMapping("/getAllAllotment")
+    @ApiOperation(value = "", authorizations = { @Authorization(value="jwtToken") })
     public List<Allotment> getAllAllotment(){
         return allotmentService.getAllAllotment();
     }
