@@ -3,6 +3,7 @@ package com.se.goBears;
 import com.se.goBears.entity.Role;
 import com.se.goBears.enums.ERole;
 import com.se.goBears.repository.RoleRepository;
+import org.apache.activemq.broker.BrokerService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -25,6 +26,15 @@ public class SpringApplication {
 	public void init(){
 		// Setting Spring Boot SetTimeZone
 		TimeZone.setDefault(TimeZone.getTimeZone("GMT-06:00"));
+	}
+
+	@Bean
+	public BrokerService broker() throws Exception {
+		BrokerService broker = new BrokerService();
+		broker.addConnector("tcp://localhost:61617");
+		broker.setPersistent(false);
+		broker.setUseJmx(true);
+		return broker;
 	}
 	@Bean
 	public CommandLineRunner dataLoader(RoleRepository roleRepository) { // user repo for ease of testing with a built-in user
