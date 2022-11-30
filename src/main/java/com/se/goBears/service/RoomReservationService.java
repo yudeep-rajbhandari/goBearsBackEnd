@@ -29,8 +29,7 @@ public class RoomReservationService {
     }
 
     public List<Reservations> getRoomReservationById(Integer userId){
-        List<Reservations> reservationsList = reservationRepository.findAllByBookedBy(userId);
-        return reservationsList;
+        return  reservationRepository.findAllByBookedBy(userId);
     }
 
     public Room roomReservation(Long roomId, Reservations reservations) throws Exception {

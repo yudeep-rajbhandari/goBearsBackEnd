@@ -1,6 +1,7 @@
 package com.se.goBears.service;
 
 import com.se.goBears.entity.Room;
+import com.se.goBears.errors.CustomException;
 import com.se.goBears.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -78,8 +79,8 @@ public class RoomService {
     }
 
     public List<Room> getAllClassRoomByBuilding(Long buildingId){
-        List<Room> roomList = roomRepository.findRoomByBuildingIdAndRoomType(buildingId,Room.RoomType.CLASSROOM);
-        return roomList;
+        return roomRepository.findRoomByBuildingIdAndRoomType(buildingId,Room.RoomType.CLASSROOM);
+
     }
 
 
@@ -94,9 +95,9 @@ public class RoomService {
     }
 
 
-    public Room makeBookableFalse(Room room) throws Exception {
+    public Room makeBookableFalse(Room room)  {
         if (room==null){
-            throw new Exception("Room is null");
+            throw new CustomException("Room is null");
         }
         room.setIsBookable(false);
         return roomRepository.save(room);
