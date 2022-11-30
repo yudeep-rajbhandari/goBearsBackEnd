@@ -29,7 +29,7 @@ public class AllotmentController {
     private AllotmentService allotmentService;
 
     /**
-     * This method adds an allotment record.
+     * <p>his method adds an allotment record.</p>T
      * @param allotment A request-body for an allotment.
      * @return The saved allotment.
      */
@@ -39,7 +39,7 @@ public class AllotmentController {
     }
 
     /**
-     * This method gets all allotment.
+     * <p>This method gets all allotment.</p>
      * @param
      * @return List of all allotments.
      */
@@ -49,7 +49,7 @@ public class AllotmentController {
     }
 
     /**
-     * This method an allotment for a user.
+     * <p>This method an allotment for a user.</p>
      * @param userId The userid for the allotment.
      * @return List of the allotment for a user.
      */
