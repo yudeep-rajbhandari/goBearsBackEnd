@@ -27,25 +27,49 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * This controller class handles all the API request for user creation, user roles assignment and authentication.
+ */
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/api/auth")
 public class AuthController {
+    /**
+     * This is an autowire to Authentication Manager.
+     */
     @Autowired
     AuthenticationManager authenticationManager;
 
+    /**
+     * This is an autowire to User Repository.
+     */
     @Autowired
     UserRepository userRepository;
 
+    /**
+     * This is an autowire to Role Repository.
+     */
     @Autowired
     RoleRepository roleRepository;
 
+    /**
+     * This is an autowire to Password Encoder.
+     */
     @Autowired
     PasswordEncoder encoder;
 
+    /**
+     * This is an autowire to Java Utils.
+     */
     @Autowired
     JwtUtils jwtUtils;
 
+    /**
+     * <p>For a valid request for an authentication, the method handles user authentication
+     * and returns user details.</p>
+     * @param loginRequest login request body for the user that is to be authenticated.
+     * @return the user details for the authenticated user.
+     */
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -67,6 +91,13 @@ public class AuthController {
                 roles));
     }
 
+    /**
+     * <p>This method handles the user signup request. It handles user and roles creation.
+     * Exception will be thrown if the username and email are not unique.</p>
+     * @param signUpRequest signup request body with user details.
+     * @return a message response.
+     * @throws RuntimeException if user assigned roles is not found.
+     */
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {

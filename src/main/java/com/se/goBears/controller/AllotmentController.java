@@ -10,19 +10,13 @@ import java.util.List;
 
 
 
+/**
+ * This controller class handles all the API requests for Allotment. It handles the request to add an allotment,
+ * get a list of all allotments and get a list of allotment for a specific user.
+ */
 @RestController
 @RequestMapping("/api/allotment/")
 @CrossOrigin(origins = "http://localhost:3000")
-
-/**
- * <p>This controller class handles all the API requests for Allotment. It handles the request to add an allotment,
- * get a list of all allotments and get a list of allotment for a specific user.</p>
- * @param
- * @return
- * @see
- * @throws
- * @version
- */
 public class AllotmentController {
 
     @Autowired
