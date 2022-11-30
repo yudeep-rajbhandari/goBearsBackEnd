@@ -121,4 +121,7 @@ public class RoomService {
         return roomRepository.findAllByBuildingIdAndIsBookableIsTrue(buildingId);
     }
 
+    public void deleteroomById(Long id){
+        roomRepository.deleteById(id);
+    }
 }
