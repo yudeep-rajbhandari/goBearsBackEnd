@@ -36,7 +36,7 @@ public class Reservations {
 
     private ReserveType reserveType;
     public enum ReserveType{
-        Room, Resource
+        ROOM, RESOURCE
     }
 
     public Long getId() {

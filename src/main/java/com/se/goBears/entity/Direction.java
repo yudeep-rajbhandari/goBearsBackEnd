@@ -9,8 +9,6 @@ public class Direction {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    private String description;
-
 
     @OneToOne
     private Room room;

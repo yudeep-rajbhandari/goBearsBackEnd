@@ -1,17 +1,15 @@
 
         package com.se.goBears.controller;
 
-import com.se.goBears.entity.Building;
-import com.se.goBears.entity.Room;
-import com.se.goBears.service.RoomService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.info.ProjectInfoProperties;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import com.se.goBears.entity.Error;
+        import com.se.goBears.entity.Error;
+        import com.se.goBears.entity.Room;
+        import com.se.goBears.service.RoomService;
+        import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.http.HttpStatus;
+        import org.springframework.http.ResponseEntity;
+        import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+        import java.util.List;
 
 @RestController
 @RequestMapping("/api/room")

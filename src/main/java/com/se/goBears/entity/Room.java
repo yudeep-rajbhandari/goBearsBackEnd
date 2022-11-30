@@ -27,11 +27,11 @@ public class Room implements Serializable {
     private Set<User> users = new HashSet<>();
 
     private Long latitude;
-    private Long Longitude;
+    private Long longitude;
 
 
     public enum RoomType{
-        classroom,staffroom,lab,washroom
+        CLASSROOM, STAFFROOM, LAB, WASHROOM
     }
 
     public Long getId() {
@@ -99,10 +99,10 @@ public class Room implements Serializable {
     }
 
     public Long getLongitude() {
-        return Longitude;
+        return longitude;
     }
 
     public void setLongitude(Long longitude) {
-        Longitude = longitude;
+        this.longitude = longitude;
     }
 }

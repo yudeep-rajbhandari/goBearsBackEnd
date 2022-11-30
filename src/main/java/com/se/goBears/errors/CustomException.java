@@ -1,7 +1,7 @@
 package com.se.goBears.errors;
 
 public class CustomException extends RuntimeException {
-    private String message;
+     private String  message;
 
     public CustomException() {
     }

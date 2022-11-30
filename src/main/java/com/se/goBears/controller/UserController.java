@@ -1,6 +1,6 @@
 package com.se.goBears.controller;
 
-import com.se.goBears.entity.Building;
+
 import com.se.goBears.entity.User;
 import com.se.goBears.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

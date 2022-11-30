@@ -1,16 +1,9 @@
 package com.se.goBears.entity;
 
 import lombok.Data;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
-
-
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;

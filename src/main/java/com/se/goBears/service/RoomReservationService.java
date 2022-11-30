@@ -29,8 +29,7 @@ public class RoomReservationService {
     }
 
     public List<Reservations> getRoomReservationById(Integer userId){
-        List<Reservations> reservationsList = reservationRepository.findAllByBookedBy(userId);
-        return reservationsList;
+        return  reservationRepository.findAllByBookedBy(userId);
     }
 
     public Room roomReservation(Long roomId, Reservations reservations) throws Exception {
@@ -46,7 +45,7 @@ public class RoomReservationService {
                 throw new Exception("Cannot reserve because reservation already found for given date/time");
             }
         }
-        reservations.setReserveType(Reservations.ReserveType.Room);
+        reservations.setReserveType(Reservations.ReserveType.ROOM);
         reservations.setRoomId(room.getId());
         Reservations roomReservation = reservationRepository.save(reservations);
         room.getRoomReservation().add(roomReservation);

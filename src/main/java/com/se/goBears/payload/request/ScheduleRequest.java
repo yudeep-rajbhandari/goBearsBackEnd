@@ -1,6 +1,6 @@
 package com.se.goBears.payload.request;
 
-import com.se.goBears.entity.Room;
+
 
 import java.util.List;
 

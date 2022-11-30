@@ -21,7 +21,7 @@ public class ScheduleController {
     @PostMapping("/addSchedule")
     public void addBulkSchedule(@RequestBody ScheduleRequest scheduleRequest) throws Exception {
         scheduleService.addSchedule(scheduleRequest);
-        System.out.println(scheduleRequest);
+
 
     }
 
