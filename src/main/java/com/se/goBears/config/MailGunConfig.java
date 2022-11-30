@@ -8,7 +8,8 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class MailGunConfig {
-    @Value("${mailgun.apiKey:default1}")
+
+    @Value("${MAILGUN_APIKEYS}")
     private String apiKey;
     @Bean
     public MailgunMessagesApi mailgunMessagesApi() {
