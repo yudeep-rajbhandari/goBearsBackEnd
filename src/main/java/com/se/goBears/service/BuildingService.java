@@ -1,6 +1,5 @@
 package com.se.goBears.service;
 
-import com.se.goBears.dao.BuildingDao;
 import com.se.goBears.entity.Address;
 import com.se.goBears.entity.Building;
 import com.se.goBears.entity.Gate;
@@ -12,20 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Transactional
 @Service
 public class BuildingService {
-
-
-    @Autowired
-    private BuildingDao buildingDao;
-
     @Autowired
     public AddressRepository addressRepository;
     @Autowired
@@ -34,11 +25,11 @@ public class BuildingService {
     @Autowired
     private BuildingRepository buildingRepository;
     public Building getBuildingByName(String name){
-        return buildingDao.findBuildingByName(name);
+        return buildingRepository.findBuildingByName(name);
     }
 
     public Building ifRoomExistsInBuilding(String roomName,String buildingName){
-        Building building = buildingDao.findBuildingByName(buildingName);
+        Building building = buildingRepository.findBuildingByName(buildingName);
         Set<Room> roomNameList = building.getRooms();
         for(Room room:roomNameList){
             if(room.getName().equals(roomName)){
