@@ -6,10 +6,12 @@ import com.se.goBears.repository.RoleRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.annotation.PostConstruct;
 import java.util.TimeZone;
 
+@EnableSwagger2
 @SpringBootApplication
 public class SpringApplication {
 
