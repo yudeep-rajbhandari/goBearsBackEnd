@@ -21,24 +21,30 @@ public class ResourceController {
     @Autowired
     private ResourceService resourceService;
 
-
-//    @PostMapping("/addResource")
-//    public ResponseEntity createResource(@RequestBody Resource resource){
-//        try {
-//            Resource resource1 = resourceService.createResource(resource);
-//            return new ResponseEntity<>(resource1, HttpStatus.OK);
-//        }
-//        catch (Exception e){
-//            Error error = new Error(e.getMessage(), HttpStatus.BAD_REQUEST);
-//            return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
-//        }
-//    }
-
     /**
      * This method takes a resource body as an input and handles the creation of the resource.
      *
      * @param resource is the resource object to be created.
      * @return the resource object created.
+     * @throws Exception if a resource with the entered resource name already exists.
+     */
+    @PostMapping("/addResource")
+    public ResponseEntity createResource(@RequestBody Resource resource){
+        try {
+            Resource resource1 = resourceService.createResource(resource);
+            return new ResponseEntity<>(resource1, HttpStatus.OK);
+        }
+        catch (Exception e){
+            Error error = new Error(e.getMessage(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    /**
+     * This method takes a resource body as an input and assigns a resource to a room.
+     *
+     * @param resource is the resource object to be assigned.
+     * @return the resource object added.
      */
     @PostMapping("/addResource2")
     public Resource addResource2(@RequestBody Resource resource) {
