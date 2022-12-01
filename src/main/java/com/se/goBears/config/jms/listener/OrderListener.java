@@ -21,7 +21,7 @@ public class OrderListener {
   public void receiveOrder(Reservations form) throws Exception {
     String message = "Your reservation status for room "+form.getRoomId() + " has changed to "+form.getStatus();
     String email = userRepository.findUserById(Long.valueOf(form.getBookedBy())).getEmail();
-    mailService.sendEmail(message,email);
+    mailService.sendEmail1(message,email);
   }
   
 }

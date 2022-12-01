@@ -9,11 +9,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MailGunConfig {
 
-    @Value("${MAILGUN_APIKEYS}")
-    private String apiKey;
-    @Bean
-    public MailgunMessagesApi mailgunMessagesApi() {
-        return MailgunClient.config(apiKey)
-                .createApi(MailgunMessagesApi.class);
-    }
+//    @Value("${MAILGUN_APIKEYS}")
+//    private String apiKey;
+//    @Bean
+//    public MailgunMessagesApi mailgunMessagesApi() {
+//        return MailgunClient.config(apiKey)
+//                .createApi(MailgunMessagesApi.class);
+//    }
 }
