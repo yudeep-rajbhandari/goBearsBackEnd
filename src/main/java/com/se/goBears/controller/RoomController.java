@@ -18,8 +18,9 @@ public class RoomController {
     @Autowired
     private RoomService roomService;
 
-    @PreAuthorize("hasRole('ADMIN')")
+
     @PostMapping("/addRoom")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity createRoom(@RequestBody Room room) {
         try {
             Room room1 = roomService.createRoom(room);
@@ -58,13 +59,13 @@ public class RoomController {
     }
 
     @GetMapping("/findAllRoom")
+    @PreAuthorize("hasRole('ADMIN')")
     public List<Room> findAllRoom() {
         return roomService.findAllRoom();
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/updateRoom")
-
     public Room updateRoom(@RequestBody Room room) {
         return roomService.updateRoom(room);
     }

@@ -6,6 +6,7 @@ import com.se.goBears.service.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,34 +20,35 @@ public class ResourceController {
     private ResourceService resourceService;
 
     @PostMapping("/addResource")
-    public ResponseEntity createResource(@RequestBody Resource resource){
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity createResource(@RequestBody Resource resource) {
         try {
             Resource resource1 = resourceService.createResource(resource);
             return new ResponseEntity<>(resource1, HttpStatus.OK);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             Error error = new Error(e.getMessage(), HttpStatus.BAD_REQUEST);
             return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
         }
     }
 
     @PostMapping("/addResource2")
-    public Resource addResource2(@RequestBody Resource resource){
+    @PreAuthorize("hasRole('ADMIN')")
+    public Resource addResource2(@RequestBody Resource resource) {
         return resourceService.addResource2(resource);
     }
 
     @GetMapping("/getAllResource")
-    public List<Resource> getAllResource(){
+    public List<Resource> getAllResource() {
         return resourceService.getAllResource();
     }
 
     @GetMapping("/getResourceCount")
-    public Integer getResourceCount(){
+    public Integer getResourceCount() {
         return resourceService.getResourceCount();
     }
 
     @GetMapping("/getResourceByRoom/{roomId}")
-    public List<Resource> getResourceByRoom(@PathVariable Long roomId){
+    public List<Resource> getResourceByRoom(@PathVariable Long roomId) {
         return resourceService.getResourceByRoom(roomId);
     }
 }
