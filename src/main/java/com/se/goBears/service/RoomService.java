@@ -95,6 +95,7 @@ public class RoomService {
     }
 
 
+
     public Room makeBookableFalse(Room room)  {
         if (room==null){
             throw new CustomException("Room is null");
