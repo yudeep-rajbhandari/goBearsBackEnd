@@ -7,6 +7,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
 
+/**
+ * This entity class defines all the variable and method declaration for the entity Address. This defines the
+ * address for the buildings in the system.
+ */
 @Data
 @Entity
 public class Address implements Serializable {
