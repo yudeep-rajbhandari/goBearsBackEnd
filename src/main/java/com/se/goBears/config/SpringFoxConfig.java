@@ -23,43 +23,43 @@ public class SpringFoxConfig {
 
 
     @Bean
-    public Docket api() {
+    public void api() {
 //    return new Docket(DocumentationType.SWAGGER_2)
 //            .select()
 //            .apis(RequestHandlerSelectors.any())
 //            .apis(RequestHandlerSelectors.basePackage("com.se.goBears"))
 //            .paths(PathSelectors.any())
 //            .build();
-        return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo())
-                .securityContexts(Arrays.asList(securityContext()))
-                .securitySchemes(Arrays.asList(apiKey()))
-                .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.any())
-                .build();
+//        return new Docket(DocumentationType.SWAGGER_2)
+//                .apiInfo(apiInfo())
+//                .securityContexts(Arrays.asList(securityContext()))
+//                .securitySchemes(Arrays.asList(apiKey()))
+//                .select()
+//                .apis(RequestHandlerSelectors.any())
+//                .paths(PathSelectors.any())
+//                .build();
 }
 
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
-                .title("GoBears REST API Document")
-                .description("Swagger for goBears")
-                .termsOfServiceUrl("localhost")
-                .version("1.0")
-                .build();
-    }
-    private SecurityContext securityContext() {
-        return SecurityContext.builder().securityReferences(defaultAuth()).build();
-    }
-
-    private List<SecurityReference> defaultAuth() {
-        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
-        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
-        authorizationScopes[0] = authorizationScope;
-        return Arrays.asList(new SecurityReference("JWT", authorizationScopes));
-    }
-
-    private ApiKey apiKey() {
-        return new ApiKey("JWT", "Authorization", "header");
-    }
+//    private ApiInfo apiInfo() {
+//        return new ApiInfoBuilder()
+//                .title("GoBears REST API Document")
+//                .description("Swagger for goBears")
+//                .termsOfServiceUrl("localhost")
+//                .version("1.0")
+//                .build();
+//    }
+//    private SecurityContext securityContext() {
+//        return SecurityContext.builder().securityReferences(defaultAuth()).build();
+//    }
+//
+//    private List<SecurityReference> defaultAuth() {
+//        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
+//        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
+//        authorizationScopes[0] = authorizationScope;
+//        return Arrays.asList(new SecurityReference("JWT", authorizationScopes));
+//    }
+//
+//    private ApiKey apiKey() {
+//        return new ApiKey("JWT", "Authorization", "header");
+//    }
 }
