@@ -18,6 +18,8 @@ public class Room implements Serializable {
     private RoomType roomType;
     private boolean isBookable;
 
+    private Integer floor;
+
     @OneToMany(targetEntity = Reservations.class, cascade = CascadeType.ALL)
     private Set<Reservations> roomReservation = new HashSet<>();
 
@@ -32,6 +34,18 @@ public class Room implements Serializable {
 
     public enum RoomType{
         CLASSROOM, STAFFROOM, LAB, WASHROOM
+    }
+
+    public void setBookable(boolean bookable) {
+        isBookable = bookable;
+    }
+
+    public Integer getFloor() {
+        return floor;
+    }
+
+    public void setFloor(Integer floor) {
+        this.floor = floor;
     }
 
     public Long getId() {

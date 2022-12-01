@@ -2,6 +2,9 @@ package com.se.goBears.controller;
 
 import com.se.goBears.entity.Error;
 import com.se.goBears.entity.Room;
+import com.se.goBears.payload.request.ScheduleRequest;
+import com.se.goBears.service.ReservationService;
+import com.se.goBears.service.RoomReservationService;
 import com.se.goBears.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -17,6 +21,9 @@ import java.util.List;
 public class RoomController {
     @Autowired
     private RoomService roomService;
+
+    @Autowired
+    private RoomReservationService reservationService;
 
 
     @PostMapping("/addRoom")
@@ -110,5 +117,10 @@ public class RoomController {
     @GetMapping("/getRoomByName/{roomName}")
     public Room getRoomById(@PathVariable String roomName) {
         return roomService.getRoomByName(roomName);
+    }
+
+    @GetMapping("/getRoomBySchedule")
+    public List<Room> getRoomBySchedule(@RequestParam Date fromDate, @RequestParam Date toDate) {
+        return reservationService.getRoomBySchedule(fromDate,toDate);
     }
 }

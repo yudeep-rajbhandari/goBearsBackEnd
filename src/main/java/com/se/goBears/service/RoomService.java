@@ -2,6 +2,7 @@ package com.se.goBears.service;
 
 import com.se.goBears.entity.Room;
 import com.se.goBears.errors.CustomException;
+import com.se.goBears.payload.request.ScheduleRequest;
 import com.se.goBears.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ public class RoomService {
 
     @Autowired
     private BuildingService buildingService;
+
 
 
     public Room getRoomByName(String name){
@@ -74,8 +76,8 @@ public class RoomService {
     }
 
     public List<Room> getAllBookableRoom(){
-        List<Room> roomList = roomRepository.findAll();
-        return roomList.stream().filter(j->!j.isBookable()).collect(Collectors.toList());
+        List<Room> roomList = roomRepository.findAllByIsBookableIsTrue();
+        return roomList;
     }
 
     public List<Room> getAllClassRoomByBuilding(Long buildingId){
@@ -125,4 +127,6 @@ public class RoomService {
     public void deleteroomById(Long id){
         roomRepository.deleteById(id);
     }
+
+
 }

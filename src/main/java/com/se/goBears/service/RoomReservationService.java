@@ -4,6 +4,7 @@ package com.se.goBears.service;
 import com.se.goBears.config.jms.JmsOrderMessagingService;
 import com.se.goBears.entity.Reservations;
 import com.se.goBears.entity.Room;
+import com.se.goBears.payload.request.ScheduleRequest;
 import com.se.goBears.repository.ReservationRepository;
 import com.se.goBears.repository.RoomRepository;
 import com.se.goBears.repository.UserRepository;
@@ -12,9 +13,11 @@ import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class RoomReservationService {
@@ -98,4 +101,29 @@ public class RoomReservationService {
     public void sendEmail(Reservations reservations){
         messagingService.sendOrder(reservations);
     }
+
+    public List<Room> getRoomBySchedule(Date fromDate,Date toDate){
+        List<Reservations> reservations = reservationRepository.findReservationsByFromDateGreaterThanAndToDateLessThan(new java.sql.Date(fromDate.getTime()),new java.sql.Date(toDate.getTime()));
+        List<Long> roomIdList = reservations.stream().map(j->j.getRoomId()).collect(Collectors.toList());
+        List<Room> roomList = roomDao.findAll().stream().filter(p->p.isBookable()).collect(Collectors.toList());
+               List<Room> newRoomList = new ArrayList<>();
+
+        for(Room room:roomList){
+            if(room.getRoomReservation().isEmpty()){
+                newRoomList.add(room);
+            }
+            for(Reservations reservations1:room.getRoomReservation()){
+                if(isDateInBetweenIncludingEndPoints(getDate(reservations1.getFromDate()),getDate(reservations1.getToDate()),fromDate)
+                && isDateInBetweenIncludingEndPoints(getDate(reservations1.getFromDate()),getDate(reservations1.getToDate()),toDate)
+                ){
+                    break;
+                }
+                newRoomList.add(room);
+            }
+
+        }
+//       List<Room> newRoomList = roomList.stream().filter(room -> !roomIdList.contains(room.getId())).collect(Collectors.toList());
+        return newRoomList;
+    }
+
 }

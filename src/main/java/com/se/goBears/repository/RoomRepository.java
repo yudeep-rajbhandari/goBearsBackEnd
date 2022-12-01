@@ -11,6 +11,8 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
 
     List<Room> findAll();
 
+//    List<Room> findAllByBookable(boolean isBookable);
+
 
     Room findRoomById(Long id);
 
