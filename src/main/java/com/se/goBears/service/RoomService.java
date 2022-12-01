@@ -95,6 +95,7 @@ public class RoomService {
     }
 
 
+
     public Room makeBookableFalse(Room room)  {
         if (room==null){
             throw new CustomException("Room is null");
@@ -121,4 +122,7 @@ public class RoomService {
         return roomRepository.findAllByBuildingIdAndIsBookableIsTrue(buildingId);
     }
 
+    public void deleteroomById(Long id){
+        roomRepository.deleteById(id);
+    }
 }

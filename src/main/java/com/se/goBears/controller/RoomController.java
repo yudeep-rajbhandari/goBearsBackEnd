@@ -103,4 +103,9 @@ public class RoomController {
     public Room getRoomById(@PathVariable Long roomId) {
         return roomService.findRoomById(roomId);
     }
+
+    @GetMapping("/getRoomByName/{roomName}")
+    public Room getRoomById(@PathVariable String roomName){
+        return roomService.getRoomByName(roomName);
+    }
 }
