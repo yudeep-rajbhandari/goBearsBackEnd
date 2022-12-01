@@ -103,10 +103,8 @@ public class RoomReservationService {
     }
 
     public List<Room> getRoomBySchedule(Date fromDate,Date toDate){
-        List<Reservations> reservations = reservationRepository.findReservationsByFromDateGreaterThanAndToDateLessThan(new java.sql.Date(fromDate.getTime()),new java.sql.Date(toDate.getTime()));
-        List<Long> roomIdList = reservations.stream().map(j->j.getRoomId()).collect(Collectors.toList());
-        List<Room> roomList = roomDao.findAll().stream().filter(p->p.isBookable()).collect(Collectors.toList());
-               List<Room> newRoomList = new ArrayList<>();
+            List<Room> roomList = roomDao.findAll().stream().filter(p->p.isBookable()).collect(Collectors.toList());
+            List<Room> newRoomList = new ArrayList<>();
 
         for(Room room:roomList){
             if(room.getRoomReservation().isEmpty()){
@@ -114,7 +112,7 @@ public class RoomReservationService {
             }
             for(Reservations reservations1:room.getRoomReservation()){
                 if(isDateInBetweenIncludingEndPoints(getDate(reservations1.getFromDate()),getDate(reservations1.getToDate()),fromDate)
-                && isDateInBetweenIncludingEndPoints(getDate(reservations1.getFromDate()),getDate(reservations1.getToDate()),toDate)
+                || isDateInBetweenIncludingEndPoints(getDate(reservations1.getFromDate()),getDate(reservations1.getToDate()),toDate)
                 ){
                     break;
                 }
