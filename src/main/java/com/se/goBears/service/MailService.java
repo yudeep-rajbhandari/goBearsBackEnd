@@ -16,22 +16,7 @@ public class MailService {
 //    private MailgunMessagesApi mailgunMessagesApi;
 @Autowired
 private JavaMailSender emailSender;
-//    public String sendEmail(String message,String email){
-//        Message message1 = Message.builder()
-//                .from("gobearsapp@gmail.com")
-//                .to("yudeep.rajbhandari@gmail.com")
-//                .subject("Status changed")
-//                .html("<html>\n" +
-//                        "<body>\n" +
-//                        "\t<p \" \">Hey</a></p>\n" +
-//                        message+
-//                        "</body>\n" +
-//                        "</html>")
-//                .build();
-//        return mailgunMessagesApi.sendMessage(domain, message1).toString();
-//    }
-
-    public void sendEmail1(String message1,String email) throws  MessagingException {
+ public void sendEmail1(String message1,String email) throws  MessagingException {
 
         SimpleMailMessage message = new SimpleMailMessage();
         MimeMessage mimeMessage = emailSender.createMimeMessage();
