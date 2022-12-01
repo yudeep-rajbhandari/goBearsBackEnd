@@ -38,7 +38,9 @@ public class Resource implements Serializable {
     public enum ResourceType {
         INDOOR,
         OUTDOOR
-    };
+    }
+
+    ;
 
     /**
      * This enum class defines the possible values for working condition of a resource.
@@ -47,7 +49,9 @@ public class Resource implements Serializable {
         EXCELLENT,
         GOOD,
         FAIR
-    };
+    }
+
+    ;
 
     /**
      * This variable annotated with @ManyToOne defines a ManyToOne relationship with Room entity.
@@ -63,6 +67,7 @@ public class Resource implements Serializable {
 
     /**
      * This method returns the id associated with a resource.
+     *
      * @return the id of the resource.
      */
     public Long getId() {
@@ -71,7 +76,8 @@ public class Resource implements Serializable {
 
     /**
      * This method sets the id associated with a resource.
-     * @param id  is the id of the resource.
+     *
+     * @param id is the id of the resource.
      */
     public void setId(Long id) {
         this.id = id;
@@ -79,6 +85,7 @@ public class Resource implements Serializable {
 
     /**
      * This method returns the name of the resource.
+     *
      * @return the name of the resource.
      */
     public String getResourceName() {
@@ -87,6 +94,7 @@ public class Resource implements Serializable {
 
     /**
      * This method sets the name of the resource.
+     *
      * @param resourceName is the name of the resource.
      */
     public void setResourceName(String resourceName) {
@@ -95,6 +103,7 @@ public class Resource implements Serializable {
 
     /**
      * This method gets the room associated with the resource.
+     *
      * @return the room associated.
      */
     public Room getRoom() {
@@ -103,6 +112,7 @@ public class Resource implements Serializable {
 
     /**
      * This method sets the room associated with the resource.
+     *
      * @param room is the room to be associated.
      */
     public void setRoom(Room room) {
@@ -111,6 +121,7 @@ public class Resource implements Serializable {
 
     /**
      * This method returns a set of resource reservations associated with the resource.
+     *
      * @return a set of reservation.
      */
     public Set<Reservations> getResourceReservations() {
@@ -119,7 +130,8 @@ public class Resource implements Serializable {
 
     /**
      * This method sets the reservations for a resource.
-     * @param resourceReservations  is the reservation to be set.
+     *
+     * @param resourceReservations is the reservation to be set.
      */
     public void setResourceReservations(Set<Reservations> resourceReservations) {
         this.resourceReservations = resourceReservations;
@@ -127,6 +139,7 @@ public class Resource implements Serializable {
 
     /**
      * This method returns the resource type.
+     *
      * @return the type of resource.
      */
     public ResourceType getResourceType() {
@@ -135,7 +148,8 @@ public class Resource implements Serializable {
 
     /**
      * This method sets the resource type.
-     * @param resourceType  is the type of resource.
+     *
+     * @param resourceType is the type of resource.
      */
     public void setResourceType(ResourceType resourceType) {
         this.resourceType = resourceType;
@@ -144,6 +158,7 @@ public class Resource implements Serializable {
 
     /**
      * This method returns the working condition of a resource.
+     *
      * @return the working condition of a resource.
      */
     public WorkingCondition getWorkingCondition() {
@@ -152,6 +167,7 @@ public class Resource implements Serializable {
 
     /**
      * This method sets the working condition of a resource.
+     *
      * @param workingCondition is the working condition to be set.
      */
     public void setWorkingCondition(WorkingCondition workingCondition) {
