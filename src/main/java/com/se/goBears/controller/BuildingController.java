@@ -23,41 +23,42 @@ public class BuildingController {
     private BuildingRepository buildingRepository;
 
     @PostMapping("/addBuilding")
-    @PreAuthorize("hasRole('ADMIN')")
-    public Building addBuilding( @RequestBody Building building){
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public Building addBuilding(@RequestBody Building building) {
 
         return buildingService.addBuilding(building);
     }
+
     @GetMapping("/getAllBuilding")
 //    @PreAuthorize("hasRole('ADMIN')")
-    public List<Building> getAllBuilding(){
+    public List<Building> getAllBuilding() {
         return buildingService.getAllBuilding();
     }
 
 
     @PutMapping("/updateBuilding")
     @PreAuthorize("hasRole('ADMIN')")
-    public Building editBuilding(@RequestBody Building building){
+    public Building editBuilding(@RequestBody Building building) {
         return buildingService.editBuilding(building);
     }
 
 
     @GetMapping("/findBuildingById/{buildingId}")
     @PreAuthorize("hasRole('ADMIN')")
-    public Building findBuildingById(@PathVariable Long buildingId){
+    public Building findBuildingById(@PathVariable Long buildingId) {
         return buildingService.findBuildingById(buildingId);
     }
 
 
     @GetMapping("/getBuildingCount")
-    public Integer getBuildingCount(){
+    public Integer getBuildingCount() {
         return buildingService.getBuildingCount();
     }
 
 
     @PutMapping("/addGate/{buildingId}")
-    public Building addGate(@RequestBody Gate gate, @PathVariable Long buildingId){
-        return buildingService.addGate(gate,buildingId);
+    public Building addGate(@RequestBody Gate gate, @PathVariable Long buildingId) {
+        return buildingService.addGate(gate, buildingId);
     }
 
 }

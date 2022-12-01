@@ -22,8 +22,13 @@ public class UserController {
     }
 
 
-    @PutMapping("/updateRole")
-    public User updateRole(@RequestBody User user) {
-        return userService.updateRole(user);
+    @PutMapping("/updateRoleToAdmin")
+    public User updateRoleToAdmin(@RequestBody User user) {
+        return userService.updateRoleToAdmin(user);
+    }
+
+    @PutMapping("/updateRoleToUser")
+    public User updateRoleToUser(@RequestBody User user) {
+        return userService.updateRoleToUser(user);
     }
 }

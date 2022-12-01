@@ -33,7 +33,7 @@ public class UserService {
         return userRepository.findUserById(id);
     }
 
-    public User updateRole(User user) {
+    public User updateRoleToAdmin(User user) {
         user.setRoles(new HashSet<>());
         Role userRole = roleRepository.findByName(ERole.ROLE_ADMIN)
                 .orElseThrow(() -> new RuntimeException("roleError"));
@@ -41,5 +41,11 @@ public class UserService {
         return userRepository.save(user);
     }
 
-
+    public User updateRoleToUser(User user) {
+        user.setRoles(new HashSet<>());
+        Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+                .orElseThrow(() -> new RuntimeException("roleError"));
+        user.getRoles().add(userRole);
+        return userRepository.save(user);
+    }
 }
