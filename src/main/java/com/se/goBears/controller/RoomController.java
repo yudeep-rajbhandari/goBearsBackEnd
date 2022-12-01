@@ -62,7 +62,9 @@ public class RoomController {
         return roomService.findAllRoom();
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/updateRoom")
+
     public Room updateRoom(@RequestBody Room room) {
         return roomService.updateRoom(room);
     }
@@ -105,7 +107,7 @@ public class RoomController {
     }
 
     @GetMapping("/getRoomByName/{roomName}")
-    public Room getRoomById(@PathVariable String roomName){
+    public Room getRoomById(@PathVariable String roomName) {
         return roomService.getRoomByName(roomName);
     }
 }

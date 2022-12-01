@@ -23,14 +23,14 @@ public class BuildingController {
     private BuildingRepository buildingRepository;
 
     @PostMapping("/addBuilding")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public Building addBuilding(@RequestBody Building building) {
 
         return buildingService.addBuilding(building);
     }
 
     @GetMapping("/getAllBuilding")
-//    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public List<Building> getAllBuilding() {
         return buildingService.getAllBuilding();
     }
@@ -57,6 +57,7 @@ public class BuildingController {
 
 
     @PutMapping("/addGate/{buildingId}")
+    @PreAuthorize("hasRole('ADMIN')")
     public Building addGate(@RequestBody Gate gate, @PathVariable Long buildingId) {
         return buildingService.addGate(gate, buildingId);
     }

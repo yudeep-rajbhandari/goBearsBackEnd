@@ -3,13 +3,11 @@ package com.se.goBears.controller;
 
 import com.se.goBears.entity.Allotment;
 import com.se.goBears.service.AllotmentService;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 
 
 @RestController
@@ -30,24 +28,28 @@ public class AllotmentController {
     private AllotmentService allotmentService;
 
     @PostMapping("addAllotment")
-    public Allotment addAllotment(@RequestBody Allotment allotment)  {
+    @PreAuthorize("hasRole('ADMIN')")
+    public Allotment addAllotment(@RequestBody Allotment allotment) {
         return allotmentService.addAllotment(allotment);
     }
 
     @GetMapping("/getAllAllotment")
-    public List<Allotment> getAllAllotment(){
+    @PreAuthorize("hasRole('ADMIN')")
+    public List<Allotment> getAllAllotment() {
         return allotmentService.getAllAllotment();
     }
 
 
     @GetMapping("/getMyAllotment/{userId}")
-    public List<Allotment> getMyAllotment(@PathVariable Long userId){
+    @PreAuthorize("hasRole('USER')")
+    public List<Allotment> getMyAllotment(@PathVariable Long userId) {
         return allotmentService.getMyAllotment(userId);
     }
 
     @DeleteMapping("/deleteAllotment/{allotmentId}")
-    public String deleteAllotment(@PathVariable Long allotmentId){
-         allotmentService.deleteAllotment(allotmentId);
-         return "deleted allotment with id "+allotmentId;
+    @PreAuthorize("hasRole('ADMIN')")
+    public String deleteAllotment(@PathVariable Long allotmentId) {
+        allotmentService.deleteAllotment(allotmentId);
+        return "deleted allotment with id " + allotmentId;
     }
 }
