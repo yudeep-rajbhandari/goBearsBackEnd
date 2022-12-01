@@ -41,7 +41,6 @@ public class AllotmentController {
 
 
     @GetMapping("/getMyAllotment/{userId}")
-    @PreAuthorize("hasRole('USER')")
     public List<Allotment> getMyAllotment(@PathVariable Long userId) {
         return allotmentService.getMyAllotment(userId);
     }
