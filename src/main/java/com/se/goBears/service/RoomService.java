@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * This is the service class for Room entity.
+ */
 @Service
 public class RoomService {
 
