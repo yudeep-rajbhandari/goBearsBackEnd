@@ -164,10 +164,10 @@ public class RoomReservationService {
         messagingService.sendOrder(reservations);
     }
 
-    /**
-     * @param fromDate
-     * @param toDate
-     * @return
+    /** This method provides the list of room which does not have schedules between from and to date
+     * @param fromDate is the from date.
+     * @param toDate is the to date.
+     * @return a list of room.
      */
     public List<Room> getRoomBySchedule(Date fromDate,Date toDate){
             List<Room> roomList = roomDao.findAll().stream().filter(p->p.isBookable()).collect(Collectors.toList());
@@ -190,6 +190,11 @@ public class RoomReservationService {
 //       List<Room> newRoomList = roomList.stream().filter(room -> !roomIdList.contains(room.getId())).collect(Collectors.toList());
         return newRoomList;
     }
+
+    /**
+     * This method runs every day at 1:10 and checks if any schedule is older than 30 days if yes then changes
+     * the status to archived.
+     */
     @Scheduled(cron = "0 1 1 * * ?")
     private void changeStatusCron(){
         List<Reservations> reservations = reservationRepository.findAll();
