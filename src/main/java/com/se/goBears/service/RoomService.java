@@ -21,7 +21,6 @@ public class RoomService {
     private RoomRepository roomRepository;
 
 
-
     @Autowired
     private BuildingService buildingService;
 
@@ -32,7 +31,7 @@ public class RoomService {
      * @param name is the name of the room.
      * @return a room object associated with a room name.
      */
-    public Room getRoomByName(String name){
+    public Room getRoomByName(String name) {
         return roomRepository.findRoomByName(name);
     }
 
@@ -45,7 +44,7 @@ public class RoomService {
      */
     public Room createRoom(Room room) throws Exception {
 
-        if(checkIfAlreadyExists(room.getName())){
+        if (checkIfAlreadyExists(room.getName())) {
             throw new Exception("Same room name exists");
 
         }
@@ -59,9 +58,9 @@ public class RoomService {
      * @param roomName is the name of the room to be checked.
      * @return True if the room does not exist else False.
      */
-    public boolean checkIfAlreadyExists(String roomName){
+    public boolean checkIfAlreadyExists(String roomName) {
         Room room = roomRepository.findRoomByName(roomName);
-        return room !=null;
+        return room != null;
     }
 
     /**
@@ -73,11 +72,10 @@ public class RoomService {
      */
     public Room getRoom(long id) throws Exception {
         Optional<Room> room = roomRepository.findById(id);
-        if(room.isPresent()){
+        if (room.isPresent()) {
             return room.get();
-        }
-        else {
-            throw  new Exception("Cannot find room");
+        } else {
+            throw new Exception("Cannot find room");
         }
     }
 
@@ -88,8 +86,8 @@ public class RoomService {
      * @return an added room object.
      * @throws Exception if the room with given name already exists.
      */
-    public Room addRoom(Room room) throws Exception{
-        if(checkIfAlreadyExists(room.getName())){
+    public Room addRoom(Room room) throws Exception {
+        if (checkIfAlreadyExists(room.getName())) {
             throw new Exception("Same room name exists");
         }
         return roomRepository.save(room);
@@ -101,8 +99,8 @@ public class RoomService {
      *
      * @return a list of rooms.
      */
-    public List<Room> findAllRoom(){
-        return roomRepository.findAll().stream().filter(j->j.getBuilding()!= null).collect(Collectors.toList());
+    public List<Room> findAllRoom() {
+        return roomRepository.findAll().stream().filter(j -> j.getBuilding() != null).collect(Collectors.toList());
     }
 
     /**
@@ -111,7 +109,7 @@ public class RoomService {
      * @param room is the updated room object.
      * @return the updated room object.
      */
-    public Room updateRoom(Room room){
+    public Room updateRoom(Room room) {
         Room updateRoom = roomRepository.findRoomById(room.getId());
         updateRoom.setName(room.getName());
         updateRoom.setRoomType(room.getRoomType());
@@ -124,7 +122,7 @@ public class RoomService {
      *
      * @return a list of bookable rooms.
      */
-    public List<Room> getAllBookableRoom(){
+    public List<Room> getAllBookableRoom() {
         List<Room> roomList = roomRepository.findAllByIsBookableIsTrue();
         return roomList;
     }
@@ -135,8 +133,8 @@ public class RoomService {
      * @param buildingId is the id of the building
      * @return a list of room associated to the building id and of type classroom.
      */
-    public List<Room> getAllClassRoomByBuilding(Long buildingId){
-        return roomRepository.findRoomByBuildingIdAndRoomType(buildingId,Room.RoomType.CLASSROOM);
+    public List<Room> getAllClassRoomByBuilding(Long buildingId) {
+        return roomRepository.findRoomByBuildingIdAndRoomType(buildingId, Room.RoomType.CLASSROOM);
 
     }
 
@@ -146,7 +144,7 @@ public class RoomService {
      * @param buildingId is the id of the building.
      * @return a list of rooms associated with the building.
      */
-    public List<Room> findAllByBuildingId(Long buildingId){
+    public List<Room> findAllByBuildingId(Long buildingId) {
         return roomRepository.findAllByBuildingId(buildingId);
     }
 
@@ -157,7 +155,7 @@ public class RoomService {
      * @param roomId is the id of the room.
      * @return a room object associated with the room id.
      */
-    public Room findRoomById(Long roomId){
+    public Room findRoomById(Long roomId) {
         return roomRepository.findRoomById(roomId);
     }
 
@@ -169,8 +167,8 @@ public class RoomService {
      * @return an update room object.
      * @throws Exception if the room is null.
      */
-    public Room makeBookableFalse(Room room)  {
-        if (room==null){
+    public Room makeBookableFalse(Room room) {
+        if (room == null) {
             throw new CustomException("Room is null");
         }
         room.setIsBookable(false);
@@ -182,7 +180,7 @@ public class RoomService {
      *
      * @return a list of bookable rooms.
      */
-    public List<Room> findAllBookableRoom(){
+    public List<Room> findAllBookableRoom() {
         return roomRepository.findAllByIsBookableIsTrue();
     }
 
@@ -192,7 +190,7 @@ public class RoomService {
      *
      * @return a count of all rooms.
      */
-    public Integer getRoomCount(){
+    public Integer getRoomCount() {
         return roomRepository.findAll().size();
     }
 
@@ -202,7 +200,7 @@ public class RoomService {
      * @param buildingId is the id of the building.
      * @return a list of rooms associated with the building.
      */
-    public List<Room> getRoomByBuildingId(Long buildingId){
+    public List<Room> getRoomByBuildingId(Long buildingId) {
         return roomRepository.findAllByBuildingId(buildingId);
     }
 
@@ -212,16 +210,17 @@ public class RoomService {
      * @param buildingId is the id of the building.
      * @return a list of all bookable rooms in the building.
      */
-    public List<Room> getBookableRoomByBuilding(Long buildingId){
+    public List<Room> getBookableRoomByBuilding(Long buildingId) {
 
         return roomRepository.findAllByBuildingIdAndIsBookableIsTrue(buildingId);
     }
 
     /**
      * This method deletes the room given the room id.
+     *
      * @param id is the id of the room to be deleted.
      */
-    public void deleteroomById(Long id){
+    public void deleteroomById(Long id) {
         roomRepository.deleteById(id);
     }
 
