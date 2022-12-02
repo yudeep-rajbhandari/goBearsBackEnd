@@ -4,7 +4,6 @@ import com.se.goBears.enums.ERole;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
 
 /**
  * This entity class defines the methods and variables for the entity Role. Role defines all the

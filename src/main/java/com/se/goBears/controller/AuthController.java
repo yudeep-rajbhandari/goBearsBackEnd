@@ -27,51 +27,27 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/**
- * This controller class handles all the API request for user creation, user roles assignment and authentication.
- */
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/api/auth")
 public class AuthController {
-    /**
-     * This is an autowire to Authentication Manager.
-     */
     @Autowired
     AuthenticationManager authenticationManager;
 
-    /**
-     * This is an autowire to User Repository.
-     */
     @Autowired
     UserRepository userRepository;
 
-    /**
-     * This is an autowire to Role Repository.
-     */
     @Autowired
     RoleRepository roleRepository;
 
-    /**
-     * This is an autowire to Password Encoder.
-     */
     @Autowired
     PasswordEncoder encoder;
 
-    /**
-     * This is an autowire to Java Utils.
-     */
     @Autowired
     JwtUtils jwtUtils;
 
-    /**
-     * For a valid request for an authentication, the method handles user authentication
-     * and returns user details.
-     * @param loginRequest login request body for the user that is to be authenticated.
-     * @return the user details for the authenticated user.
-     * @see JwtUtils
-     * @see AuthenticationManager
-     */
+     private  static String roleError = "Error: Role is not found.";
+
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -93,13 +69,6 @@ public class AuthController {
                 roles));
     }
 
-    /**
-     * This method handles the user signup request. It handles user and roles creation.
-     * Exception will be thrown if the username and email are not unique.
-     * @param signUpRequest signup request body with user details.
-     * @return a message response for successful signup or error..
-     * @throws RuntimeException if user assigned roles is not found.
-     */
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
@@ -124,21 +93,21 @@ public class AuthController {
 
         if (strRoles == null) {
             Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                    .orElseThrow(() -> new RuntimeException(roleError));
             roles.add(userRole);
         } else {
             strRoles.forEach(role -> {
                 switch (role) {
                     case "admin":
                         Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                                .orElseThrow(() -> new RuntimeException(roleError));
                         roles.add(adminRole);
 
                         break;
 
                     default:
                         Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                                .orElseThrow(() -> new RuntimeException(roleError));
                         roles.add(userRole);
                 }
             });

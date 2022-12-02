@@ -69,7 +69,7 @@ public class ScheduleService {
      */
     public void addSchedule(ScheduleRequest request) throws Exception {
         Room room = roomRepository.findById(request.getRoomId()).get();
-        List<Schedule> scheduleList = scheduleRepository.findScheduleByRoom_IdAndFromDateGreaterThan(room.getId(),new DateTime(request.getSelectedFromDate()).toDate());
+        List<Schedule> scheduleList = scheduleRepository.findScheduleByRoomIdAndFromDateGreaterThan(room.getId(),new DateTime(request.getSelectedFromDate()).toDate());
         List<DateTime> dateTimes = new ArrayList<>();
         if(request.getSelectedFrequency().equals(ScheduleRequest.Frequency.Custom)){
             for(ScheduleRequest.Custom s:request.getCustom()){

@@ -1,14 +1,11 @@
 package com.se.goBears.service;
 
 import com.se.goBears.entity.Allotment;
-import com.se.goBears.entity.Room;
-import com.se.goBears.entity.User;
 import com.se.goBears.errors.CustomException;
 import com.se.goBears.repository.AllotmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -69,5 +66,9 @@ public class AllotmentService {
      */
     public List<Allotment> getMyAllotment(Long userId){
         return allotmentRepository.findAllotmentsByUser(userService.findUserById(userId));
+    }
+
+    public void deleteAllotment(Long allotmentId) {
+        allotmentRepository.deleteById(allotmentId);
     }
 }

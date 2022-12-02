@@ -174,8 +174,7 @@ public class Resource implements Serializable {
         this.workingCondition = workingCondition;
     }
 
-    public Resource() {
-    }
+
 
 
 }

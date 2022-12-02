@@ -4,7 +4,6 @@ import com.se.goBears.entity.Gate;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
 
 /**
  * This is a repository interface for Gate entity.
