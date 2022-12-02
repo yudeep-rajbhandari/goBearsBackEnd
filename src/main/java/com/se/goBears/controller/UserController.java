@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * This controller class handles API requests for user
+ */
 @RestController
 @RequestMapping("/api/user")
 @CrossOrigin(origins = "http://localhost:3000")
@@ -17,6 +20,10 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * This method returns all users registered in the system.
+     * @return a list of all users in the system.
+     */
     @GetMapping("/getAllUser")
     @PreAuthorize("hasRole('ADMIN')")
     public List<User> getAllUser() {
