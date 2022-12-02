@@ -32,6 +32,9 @@ public class ScheduleService {
     Map<String, Integer> map = new HashMap<String, Integer>();
 
 
+    /**
+     * This is the postconstruct for the days for the schedule.
+     */
     @PostConstruct
     private void setDaysMap(){
         map.put("M",DateTimeConstants.MONDAY);
@@ -41,6 +44,11 @@ public class ScheduleService {
         map.put("F",DateTimeConstants.FRIDAY);
     }
 
+    /**
+     * This method return a list of schedule given a date.
+     * @param date is the date to be looked for.
+     * @return a list of schedule for the given date.
+     */
     public List<Schedule> getSchedulebyDate(String date){
         Date date1 = getDate(date);
         Calendar cal = Calendar.getInstance();
@@ -55,6 +63,10 @@ public class ScheduleService {
         return scheduleRepository.findScheduleByFromDateGreaterThanAndToDateLessThan(d1,d2);
     }
 
+    /**
+     * This method adds a schedule given a schedule request.
+     * @param request is the schedule to be added.
+     */
     public void addSchedule(ScheduleRequest request) throws Exception {
         Room room = roomRepository.findById(request.getRoomId()).get();
         List<Schedule> scheduleList = scheduleRepository.findScheduleByRoom_IdAndFromDateGreaterThan(room.getId(),new DateTime(request.getSelectedFromDate()).toDate());
