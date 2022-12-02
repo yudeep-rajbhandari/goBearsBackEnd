@@ -19,7 +19,7 @@ public class ResourceReservationService {
     @Autowired
     private ResourceRepository resourceRepository;
 
-    public Resource resourceReservation(Long resourceId, Reservations reservations) throws Exception {
+    public Reservations resourceReservation(Long resourceId, Reservations reservations) throws Exception {
         Resource resource = resourceRepository.findById(resourceId).get();
         for(Reservations roomReservation: resource.getResourceReservations()){
             boolean cond1 = isDateInBetweenIncludingEndPoints(getDate(roomReservation.getFromDate()),getDate(roomReservation.getToDate()),getDate(reservations.getFromDate()));
@@ -37,7 +37,8 @@ public class ResourceReservationService {
         Reservations roomReservation = reservationRepository.save(reservations);
         resource.getResourceReservations().add(roomReservation);
         resource.setId(resource.getId());
-        return resourceRepository.save(resource);
+        resourceRepository.save(resource);
+        return reservations;
     }
     public Date getDate(String a){
         try{

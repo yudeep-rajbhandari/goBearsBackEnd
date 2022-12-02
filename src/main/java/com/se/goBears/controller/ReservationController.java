@@ -3,12 +3,12 @@ package com.se.goBears.controller;
 import com.se.goBears.entity.Reservations;
 import com.se.goBears.entity.Room;
 import com.se.goBears.service.ReservationService;
+import com.se.goBears.service.ResourceReservationService;
 import com.se.goBears.service.RoomReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Set;
 
@@ -27,6 +27,9 @@ public class ReservationController {
 
     @Autowired
     private ReservationService reservationService;
+
+    @Autowired
+    private ResourceReservationService resourceReservationService;
 
     /**
      * This method accepts a room id and a reservation body and creates the requested reservation if all the dates
@@ -137,6 +140,12 @@ public class ReservationController {
     @PutMapping("/cancelReservation/{id}")
     public Reservations cancelReservation(@PathVariable Long id) {
         return reservationService.cancelReservation(id);
+    }
+
+
+    @PostMapping("/room/{id}")
+    public Reservations reserveResource(@PathVariable Long id, @RequestBody Reservations reservations) throws Exception {
+        return resourceReservationService.resourceReservation(id,reservations);
     }
 
 }

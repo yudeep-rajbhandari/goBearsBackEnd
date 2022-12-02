@@ -51,4 +51,9 @@ public class ResourceController {
     public List<Resource> getResourceByRoom(@PathVariable Long roomId) {
         return resourceService.getResourceByRoom(roomId);
     }
+
+    @GetMapping("/getResourceById/{roomId}")
+    public Resource getResourceById(@PathVariable Long id){
+        return resourceService.getResourceByID(id);
+    }
 }
