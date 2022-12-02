@@ -14,6 +14,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+
+/**
+ * This service class handles the request for the room reservations.
+ */
 @Service
 public class RoomReservationService {
 
@@ -23,16 +27,34 @@ public class RoomReservationService {
     @Autowired
     private ReservationRepository reservationRepository;
 
+    /**
+     * This method returns a set of all reservation associated with a room.
+     * @param roomId is the id of the room.
+     * @return a list of reservation associated with the room.
+     */
     public Set<Reservations> getRoomReservation(Long roomId){
         Room room = roomDao.findById(roomId).get();
         return room.getRoomReservation();
     }
 
+    /**
+     * This method returns a list of reservation associated with a user.
+     * @param userId is the id of the user.
+     * @return a list of reservations associated with the user.
+     */
     public List<Reservations> getRoomReservationById(Integer userId){
         List<Reservations> reservationsList = reservationRepository.findAllByBookedBy(userId);
         return reservationsList;
     }
 
+    /**
+     * This method given a room id and reservation check if the reservation date is valid and add a new reservation
+     * for the room.
+     * @param roomId is the id of the room to be reserved.
+     * @param reservations is the reservation object.
+     * @return room object with newly added reservation.
+     * @throws Exception if the reservation dates are already occupied.
+     */
     public Room roomReservation(Long roomId, Reservations reservations) throws Exception {
         Room room = roomDao.findById(roomId).get();
         for(Reservations roomReservation: room.getRoomReservation()){
@@ -55,6 +77,12 @@ public class RoomReservationService {
         return roomDao.save(room);
 
     }
+
+    /**
+     * This method parses the string date and returns a date.
+     * @param a the string value for date to be parsed.
+     * @return a parsed date value.
+     */
     public Date getDate(String a){
         try{
             SimpleDateFormat formatter6=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -66,25 +94,54 @@ public class RoomReservationService {
         }
 
     }
+
+    /**
+     * This method returns true if the given date exists between two other given dates.
+     * @param min is the start date.
+     * @param max is the end date.
+     * @param date is the date to be checked if it is between two dates.
+     * @return True if date exists between min and max dates else False.
+     */
     public static boolean isDateInBetweenIncludingEndPoints(final Date min, final Date max, final Date date){
         return !(date.before(min) || date.after(max));
     }
 
 
+    /**
+     * This method returns a list of all room reservations.
+     * @return a list of all reservations.
+     */
     public List<Reservations> getAllRoomReservation(){
         return reservationRepository.findAll();
     }
 
+    /**
+     * This method handles the admin request to approve a reservation.
+     * @param id is the id of the reservation.
+     * @return reservation object with approved status.
+     */
     public Reservations acceptRoomReservation(Long id){
         Reservations roomReservation = reservationRepository.findReservationsById(id);
         roomReservation.setStatus(Reservations.Status.APPROVED);
         return reservationRepository.save(roomReservation);
     }
+
+    /**
+     * This method handles the admin request to decline a reservation.
+     * @param id is the id of the reservation.
+     * @return reservation object with declined status.
+     */
     public Reservations declineRoomReservation(Long id){
         Reservations roomReservation = reservationRepository.findReservationsById(id);
         roomReservation.setStatus(Reservations.Status.DECLINED);
         return reservationRepository.save(roomReservation);
     }
+
+    /**
+     * This method handles the admin request to arcjive a reservation.
+     * @param id is the id of the reservation.
+     * @return reservation object with archived status.
+     */
     public Reservations archiveRoomReservation(Long id){
         Reservations roomReservation = reservationRepository.findReservationsById(id);
         roomReservation.setStatus(Reservations.Status.ARCHIVED);
