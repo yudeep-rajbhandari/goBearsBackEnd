@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 /**
- * This is the class for all the Allotment
+ * This is the service class for all the Allotment entity.
  */
 public class AllotmentService {
 
@@ -23,11 +23,13 @@ public class AllotmentService {
     @Autowired
     private RoomService roomService;
 
-
     /**
-     * This method adds allotment.
-     * @param allotment
-     * @return
+     * This method adds allotment for a room for a user.
+     * @param allotment is an allotment to be added.
+     * @return the saved allotment object.
+     * @throws Exception if user does not exist.
+     * @throws Exception if room does not exist.
+     * @throws Exception if date for allotment is null.
      */
     public Allotment addAllotment(Allotment allotment) {
         if (allotment.getUser().getId()==null || allotment.getUser().getId()==0) {
@@ -49,8 +51,8 @@ public class AllotmentService {
 
 
     /**
-     *
-     * @return
+     * This method returns a list of all allotment.
+     * @return a list of allotments.
      */
     public List<Allotment> getAllAllotment(){
         return allotmentRepository.findAll();
@@ -58,9 +60,9 @@ public class AllotmentService {
 
 
     /**
-     *
-     * @param userId
-     * @return
+     * This method on given a user id returns a list of allotment associated with it.
+     * @param userId is the user id of the user.
+     * @return a list of allotment for the user.
      */
     public List<Allotment> getMyAllotment(Long userId){
         return allotmentRepository.findAllotmentsByUser(userService.findUserById(userId));

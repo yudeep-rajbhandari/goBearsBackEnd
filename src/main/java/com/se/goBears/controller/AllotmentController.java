@@ -15,24 +15,36 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 
 /**
- * <p>This controller handles all the API requests for Allotment</p>
+ * <p>This controller handles all the API requests for Allotment.</p>
  * @param
  * @return
- * @see
  * @throws
  * @version
  */
 public class AllotmentController {
 
+    /**
+     * <p>This is a autowire to allotment service.</p>
+     */
     @Autowired
     private AllotmentService allotmentService;
 
+    /**
+     * <p>This method handles the request to add an allotment.</p>
+     * @param allotment Request body for allotment.
+     * @return The saved request body for allotment.
+     */
     @PostMapping("addAllotment")
     @PreAuthorize("hasRole('ADMIN')")
     public Allotment addAllotment(@RequestBody Allotment allotment) {
         return allotmentService.addAllotment(allotment);
     }
 
+    /**
+     * <p>This method handles the request for all allotment.</p>
+     * @param
+     * @return A list of all allotment.
+     */
     @GetMapping("/getAllAllotment")
     @PreAuthorize("hasRole('ADMIN')")
     public List<Allotment> getAllAllotment() {
@@ -40,6 +52,11 @@ public class AllotmentController {
     }
 
 
+    /**
+     * <p>This method handles the request to get allotment for an id.</p>
+     * @param userId
+     * @return
+     */
     @GetMapping("/getMyAllotment/{userId}")
     public List<Allotment> getMyAllotment(@PathVariable Long userId) {
         return allotmentService.getMyAllotment(userId);
