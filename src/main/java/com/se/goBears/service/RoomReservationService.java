@@ -15,10 +15,7 @@ import org.springframework.stereotype.Service;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -106,7 +103,7 @@ public class RoomReservationService {
 
     public List<Room> getRoomBySchedule(Date fromDate,Date toDate){
             List<Room> roomList = roomDao.findAll().stream().filter(p->p.isBookable()).collect(Collectors.toList());
-            List<Room> newRoomList = new ArrayList<>();
+            Set<Room> newRoomList = new HashSet<>();
 
         for(Room room:roomList){
             if(room.getRoomReservation().isEmpty()){
@@ -122,8 +119,10 @@ public class RoomReservationService {
             }
 
         }
+        List<Room> roomList1 = new ArrayList<>();
+        roomList1.addAll(newRoomList);
 //       List<Room> newRoomList = roomList.stream().filter(room -> !roomIdList.contains(room.getId())).collect(Collectors.toList());
-        return newRoomList;
+        return roomList1;
     }
     @Scheduled(cron = "0 1 1 * * ?")
     private void changeStatusCron(){

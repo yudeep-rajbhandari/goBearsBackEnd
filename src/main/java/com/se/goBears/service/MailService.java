@@ -28,7 +28,7 @@ private JavaMailSender emailSender;
                 "</body>\n" +
                 "</html>";
         helper.setText(htmlMsg, true); // Use this or above line.
-        helper.setTo("bhagatpranish@gmail.com");
+        helper.setTo(email);
         helper.setSubject("Status change");
         helper.setFrom("gobearsapp@gmail.com");
         emailSender.send(mimeMessage);
