@@ -53,7 +53,7 @@ public class ResourceController {
     }
 
     @GetMapping("/getResourceById/{roomId}")
-    public Resource getResourceById(@PathVariable Long id){
-        return resourceService.getResourceByID(id);
+    public Resource getResourceById(@PathVariable Long roomId){
+        return resourceService.getResourceByID(roomId);
     }
 }

@@ -6,11 +6,13 @@ import com.se.goBears.entity.Room;
 import com.se.goBears.repository.ReservationRepository;
 import com.se.goBears.repository.ResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
 
+@Service
 public class ResourceReservationService {
 
     @Autowired

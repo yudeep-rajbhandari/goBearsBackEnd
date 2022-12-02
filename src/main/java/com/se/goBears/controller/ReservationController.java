@@ -143,7 +143,7 @@ public class ReservationController {
     }
 
 
-    @PostMapping("/room/{id}")
+    @PostMapping("/resource/{id}")
     public Reservations reserveResource(@PathVariable Long id, @RequestBody Reservations reservations) throws Exception {
         return resourceReservationService.resourceReservation(id,reservations);
     }
