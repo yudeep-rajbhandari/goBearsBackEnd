@@ -9,10 +9,12 @@ import com.se.goBears.repository.ReservationRepository;
 import com.se.goBears.repository.RoomRepository;
 import com.se.goBears.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -123,5 +125,17 @@ public class RoomReservationService {
 //       List<Room> newRoomList = roomList.stream().filter(room -> !roomIdList.contains(room.getId())).collect(Collectors.toList());
         return newRoomList;
     }
+    @Scheduled(cron = "0 1 1 * * ?")
+    private void changeStatusCron(){
+        List<Reservations> reservations = reservationRepository.findAll();
+        Date currentDate = new Date();
+        for(Reservations r: reservations){
+            ZonedDateTime now = ZonedDateTime.now();
+            ZonedDateTime thirtyDaysAgo = now.plusDays(-30);
 
+            if (getDate(r.getFromDate()).toInstant().isBefore(thirtyDaysAgo.toInstant())) {
+                        r.setStatus(Reservations.Status.ARCHIVED);
+            }
+        }
+    }
 }
