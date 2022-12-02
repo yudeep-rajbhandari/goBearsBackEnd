@@ -162,6 +162,7 @@ public class ScheduleService {
         }
 
     }
+
     public static boolean isDateInBetweenIncludingEndPoints(final Date min, final Date max, final Date date){
         return !(date.before(min) || date.after(max));
     }

@@ -15,7 +15,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 
 /**
- * <p>This controller handles all the API requests for Allotment.</p>
+ * This controller handles all the API requests for Allotment.
  * @param
  * @return
  * @throws
