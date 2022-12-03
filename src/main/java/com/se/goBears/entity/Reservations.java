@@ -31,12 +31,12 @@ public class Reservations {
 
     private Status status = Status.PENDING;
     public enum Status{
-        PENDING, DECLINED, APPROVED, ARCHIVED
+        PENDING, DECLINED, APPROVED, ARCHIVED,CANCELED
     }
 
     private ReserveType reserveType;
     public enum ReserveType{
-        Room, Resource
+        ROOM, RESOURCE
     }
 
     public Long getId() {

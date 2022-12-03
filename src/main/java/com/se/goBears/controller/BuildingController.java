@@ -2,6 +2,7 @@ package com.se.goBears.controller;
 
 
 import com.se.goBears.entity.Building;
+import com.se.goBears.entity.Gate;
 import com.se.goBears.repository.BuildingRepository;
 import com.se.goBears.service.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/building")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 public class BuildingController {
 
     @Autowired
@@ -23,28 +24,42 @@ public class BuildingController {
 
     @PostMapping("/addBuilding")
     @PreAuthorize("hasRole('ADMIN')")
-    public Building addBuilding( @RequestBody Building building){
+    public Building addBuilding(@RequestBody Building building) {
 
         return buildingService.addBuilding(building);
     }
+
     @GetMapping("/getAllBuilding")
-//    @PreAuthorize("hasRole('ADMIN')")
-    public List<Building> getAllBuilding(){
+    @PreAuthorize("hasRole('ADMIN')")
+    public List<Building> getAllBuilding() {
         return buildingService.getAllBuilding();
     }
 
 
     @PutMapping("/updateBuilding")
     @PreAuthorize("hasRole('ADMIN')")
-    public Building editBuilding(@RequestBody Building building){
+    public Building editBuilding(@RequestBody Building building) {
         return buildingService.editBuilding(building);
     }
 
 
     @GetMapping("/findBuildingById/{buildingId}")
     @PreAuthorize("hasRole('ADMIN')")
-    public Building findBuildingById(@PathVariable Long buildingId){
+    public Building findBuildingById(@PathVariable Long buildingId) {
         return buildingService.findBuildingById(buildingId);
+    }
+
+
+    @GetMapping("/getBuildingCount")
+    public Integer getBuildingCount() {
+        return buildingService.getBuildingCount();
+    }
+
+
+    @PutMapping("/addGate/{buildingId}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public Building addGate(@RequestBody Gate gate, @PathVariable Long buildingId) {
+        return buildingService.addGate(gate, buildingId);
     }
 
 }

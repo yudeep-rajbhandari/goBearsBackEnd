@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+
 @Component
 public class AuthEntryPointJwt implements AuthenticationEntryPoint {
 
@@ -37,7 +38,6 @@ public class AuthEntryPointJwt implements AuthenticationEntryPoint {
         final ObjectMapper mapper = new ObjectMapper();
         mapper.writeValue(response.getOutputStream(), body);
 
-//    response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Error: Unauthorized");
     }
 
 }

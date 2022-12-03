@@ -1,13 +1,13 @@
 package com.se.goBears.entity;
 
-import lombok.Data;
+
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+
 @Entity
 public class Room implements Serializable {
     @Id
@@ -18,6 +18,8 @@ public class Room implements Serializable {
     private RoomType roomType;
     private boolean isBookable;
 
+    private Integer floor;
+
     @OneToMany(targetEntity = Reservations.class, cascade = CascadeType.ALL)
     private Set<Reservations> roomReservation = new HashSet<>();
 
@@ -27,11 +29,23 @@ public class Room implements Serializable {
     private Set<User> users = new HashSet<>();
 
     private Long latitude;
-    private Long Longitude;
+    private Long longitude;
 
 
     public enum RoomType{
-        classroom,staffroom,lab,washroom
+        CLASSROOM, STAFFROOM, LAB, WASHROOM
+    }
+
+    public void setBookable(boolean bookable) {
+        isBookable = bookable;
+    }
+
+    public Integer getFloor() {
+        return floor;
+    }
+
+    public void setFloor(Integer floor) {
+        this.floor = floor;
     }
 
     public Long getId() {
@@ -99,10 +113,10 @@ public class Room implements Serializable {
     }
 
     public Long getLongitude() {
-        return Longitude;
+        return longitude;
     }
 
     public void setLongitude(Long longitude) {
-        Longitude = longitude;
+        this.longitude = longitude;
     }
 }

@@ -12,5 +12,7 @@ import java.util.List;
 @Transactional
 public interface BuildingRepository extends CrudRepository<Building, Long> {
     Building findBuildingById(Long buildingId);
+    Building findBuildingByName(String name);
+    List<Building> findAll();
 
 }
