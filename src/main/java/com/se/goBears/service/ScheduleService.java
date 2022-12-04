@@ -133,7 +133,7 @@ public class ScheduleService {
         return days;
     }
 
-    private Schedule saveSchedule(Date fromDate,Date toDate,String schedule,Room room,List<Schedule> scheduleList) throws Exception {
+    public Schedule saveSchedule(Date fromDate,Date toDate,String schedule,Room room,List<Schedule> scheduleList) throws Exception {
 
         for(Schedule schedule1: scheduleList){
             boolean cond1 = isDateInBetweenIncludingEndPoints(getDate(schedule1.getFromDate().toString()),getDate(schedule1.getToDate().toString()),fromDate);
@@ -165,5 +165,8 @@ public class ScheduleService {
 
     public static boolean isDateInBetweenIncludingEndPoints(final Date min, final Date max, final Date date){
         return !(date.before(min) || date.after(max));
+    }
+    public void deleteSchedule(Long id){
+        scheduleRepository.deleteById(id);
     }
 }

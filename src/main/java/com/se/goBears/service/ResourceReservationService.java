@@ -34,13 +34,18 @@ public class ResourceReservationService {
                 throw new Exception("Cannot reserve because reservation already found for given date/time");
             }
         }
-        reservations.setReserveType(Reservations.ReserveType.RESOURCE);
-        reservations.setRoomId(resource.getId());
-        Reservations roomReservation = reservationRepository.save(reservations);
+
+        Reservations roomReservation = saveRoomReservation(reservations,resourceId);
         resource.getResourceReservations().add(roomReservation);
         resource.setId(resource.getId());
         resourceRepository.save(resource);
         return reservations;
+    }
+
+    public Reservations saveRoomReservation(Reservations reservations,Long roomId){
+        reservations.setReserveType(Reservations.ReserveType.RESOURCE);
+        reservations.setRoomId(roomId);
+        return reservationRepository.save(reservations);
     }
     public Date getDate(String a){
         try{
@@ -55,5 +60,8 @@ public class ResourceReservationService {
     }
     public static boolean isDateInBetweenIncludingEndPoints(final Date min, final Date max, final Date date){
         return !(date.before(min) || date.after(max));
+    }
+    public void deleteReservationByid(Long id){
+        reservationRepository.deleteById(id);
     }
 }

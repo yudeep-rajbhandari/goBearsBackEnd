@@ -73,12 +73,17 @@ public class RoomReservationService {
                 throw new Exception("Cannot reserve because reservation already found for given date/time");
             }
         }
-        reservations.setReserveType(Reservations.ReserveType.ROOM);
-        reservations.setRoomId(room.getId());
-        Reservations roomReservation = reservationRepository.save(reservations);
+
+        Reservations roomReservation = saveRoomReservation(reservations,room.getId());
         room.getRoomReservation().add(roomReservation);
         room.setId(room.getId());
         return roomDao.save(room);
+    }
+
+    public Reservations saveRoomReservation(Reservations reservations,Long roomId){
+        reservations.setReserveType(Reservations.ReserveType.ROOM);
+        reservations.setRoomId(roomId);
+        return reservationRepository.save(reservations);
     }
 
     /**
@@ -206,5 +211,8 @@ public class RoomReservationService {
                         r.setStatus(Reservations.Status.ARCHIVED);
             }
         }
+    }
+    public void deleteReservationByid(Long id){
+        reservationRepository.deleteById(id);
     }
 }
