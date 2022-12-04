@@ -129,4 +129,10 @@ public class RoomController {
     public List<Room> getRoomBySchedule(@RequestParam Date fromDate, @RequestParam Date toDate) {
         return reservationService.getRoomBySchedule(fromDate,toDate);
     }
+
+
+    @GetMapping("/getRoomNameById/{id}")
+    public String getRoomNameById(@RequestParam Long id){
+        return roomService.getRoomNameById(id);
+    }
 }

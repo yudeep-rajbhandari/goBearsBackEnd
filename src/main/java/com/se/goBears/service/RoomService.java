@@ -225,4 +225,8 @@ public class RoomService {
     }
 
 
+    public String getRoomNameById(Long id){
+        return roomRepository.findRoomById(id).getName();
+    }
+
 }

@@ -66,6 +66,9 @@ public class ResourceService {
         return resourceRepo.findAll().size();
     }
 
+    public String getResourceNameById(Long id){
+        return resourceRepo.findResourceById(id).getResourceName();
+    }
 
 
 }
