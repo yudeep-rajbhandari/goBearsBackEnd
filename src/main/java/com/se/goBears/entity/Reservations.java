@@ -19,6 +19,18 @@ public class Reservations {
 
     private long roomId;
 
+    private String entityName;
+    private Status status = Status.PENDING;
+    private ReserveType reserveType;
+
+    public String getEntityName() {
+        return entityName;
+    }
+
+    public void setEntityName(String entityName) {
+        this.entityName = entityName;
+    }
+
     public long getRoomId() {
 
         return roomId;
@@ -27,16 +39,6 @@ public class Reservations {
     public void setRoomId(long roomId) {
 
         this.roomId = roomId;
-    }
-
-    private Status status = Status.PENDING;
-    public enum Status{
-        PENDING, DECLINED, APPROVED, ARCHIVED,CANCELED
-    }
-
-    private ReserveType reserveType;
-    public enum ReserveType{
-        ROOM, RESOURCE
     }
 
     public Long getId() {
@@ -85,5 +87,13 @@ public class Reservations {
 
     public void setReserveType(ReserveType reserveType) {
         this.reserveType = reserveType;
+    }
+
+    public enum Status {
+        PENDING, DECLINED, APPROVED, ARCHIVED, CANCELED
+    }
+
+    public enum ReserveType {
+        ROOM, RESOURCE
     }
 }
