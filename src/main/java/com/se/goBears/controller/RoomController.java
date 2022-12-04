@@ -61,8 +61,14 @@ public class RoomController {
     }
 
     @PostMapping("/addRoom2")
-    public Room addRoom(@RequestBody Room room) throws Exception {
-        return roomService.addRoom(room);
+    public ResponseEntity addRoom(@RequestBody Room room) throws Exception {
+        try {
+            Room room1 = roomService.addRoom(room);
+            return new ResponseEntity<>(room1, HttpStatus.OK);
+        } catch (Exception e) {
+            Error error = new Error(e.getMessage(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping("/findAllRoom")
