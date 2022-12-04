@@ -18,6 +18,8 @@ public class Resource implements Serializable {
     @GeneratedValue
     private Long id;
 
+
+    private boolean isBookable;
     /**
      * This variable defines the name of the resource.
      */
@@ -30,40 +32,28 @@ public class Resource implements Serializable {
      * This variable defines the working condition of the resource.
      */
     private WorkingCondition workingCondition;
-
-
-    /**
-     * This enum class defines the possible type for a resource.
-     */
-    public enum ResourceType {
-        INDOOR,
-        OUTDOOR
-    }
-
-    ;
-
-    /**
-     * This enum class defines the possible values for working condition of a resource.
-     */
-    public enum WorkingCondition {
-        EXCELLENT,
-        GOOD,
-        FAIR
-    }
-
-    ;
-
     /**
      * This variable annotated with @ManyToOne defines a ManyToOne relationship with Room entity.
      */
     @ManyToOne
     private Room room;
-
     /**
      * This variable annotated with @OneToMany defines a OneToMany relationship with Reservation entity.
      */
     @OneToMany
     private Set<Reservations> resourceReservations;
+
+    public boolean isBookable() {
+        return isBookable;
+    }
+
+    ;
+
+    public void setBookable(boolean bookable) {
+        isBookable = bookable;
+    }
+
+    ;
 
     /**
      * This method returns the id associated with a resource.
@@ -155,7 +145,6 @@ public class Resource implements Serializable {
         this.resourceType = resourceType;
     }
 
-
     /**
      * This method returns the working condition of a resource.
      *
@@ -175,6 +164,22 @@ public class Resource implements Serializable {
     }
 
 
+    /**
+     * This enum class defines the possible type for a resource.
+     */
+    public enum ResourceType {
+        INDOOR,
+        OUTDOOR
+    }
+
+    /**
+     * This enum class defines the possible values for working condition of a resource.
+     */
+    public enum WorkingCondition {
+        EXCELLENT,
+        GOOD,
+        FAIR
+    }
 
 
 }
