@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  * This controller class handles the request for web socket.
  */
 @Controller
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 public class WebSocketController {
     @Autowired
     private SimpMessagingTemplate simpMessagingTemplate;
