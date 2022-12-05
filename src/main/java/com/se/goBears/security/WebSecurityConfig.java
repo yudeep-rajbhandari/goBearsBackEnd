@@ -52,6 +52,7 @@ public class WebSecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests().antMatchers("/api/auth/**").permitAll()
                 .antMatchers("/api/schedule/getSchedule").permitAll()
+                .antMatchers(" /api/room/getRoomByName/**e").permitAll()
                 .antMatchers("/api/test/**").permitAll()
                 .antMatchers("/goBears/swagger-ui/**").permitAll()
                 .antMatchers("/swagger-ui/**").permitAll()
