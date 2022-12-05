@@ -16,6 +16,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 
+/**
+ * This component class handles the Jwt authorization.
+ */
 @Component
 public class AuthEntryPointJwt implements AuthenticationEntryPoint {
 

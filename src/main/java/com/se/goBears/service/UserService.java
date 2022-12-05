@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.List;
 
+/**
+ * This method handles user role for user request.
+ */
 @Service
 public class UserService {
 
@@ -20,6 +23,9 @@ public class UserService {
     @Autowired
     RoleRepository roleRepository;
 
+    /**
+     * This method returns a user object given a useremail.
+     */
     public User findUserByEmail(String email) {
         return userRepository.findUserByEmail(email);
     }
@@ -33,6 +39,9 @@ public class UserService {
         return userRepository.findUserById(id);
     }
 
+    /**
+     * This method updates the user role to admin.
+     */
     public User updateRoleToAdmin(User user) {
         user.setRoles(new HashSet<>());
         Role userRole = roleRepository.findByName(ERole.ROLE_ADMIN)
@@ -41,6 +50,9 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    /**
+     * This method updates a user role to user.
+     */
     public User updateRoleToUser(User user) {
         user.setRoles(new HashSet<>());
         Role userRole = roleRepository.findByName(ERole.ROLE_USER)

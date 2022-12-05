@@ -5,6 +5,9 @@ import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * This entity class defines the methods and variables for the entity Gate.
+ */
 @Data
 @Entity
 public class Gate implements Serializable {

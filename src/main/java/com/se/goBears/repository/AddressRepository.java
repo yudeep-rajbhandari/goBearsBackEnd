@@ -13,7 +13,6 @@ public interface AddressRepository extends CrudRepository<Address, Long> {
 
     /**
      * On an input id the method returns the address associated with the id.
-     *
      * @param id is the id to be found.
      * @return an address object.
      */

@@ -3,6 +3,9 @@ package com.se.goBears.entity;
 import java.security.Principal;
 import java.util.Objects;
 
+/**
+ *  This entity class defines the methods and variables for the entity AnonymousPrinciple.
+ */
 public class AnonymousPrinciple implements Principal {
     private String name;
 

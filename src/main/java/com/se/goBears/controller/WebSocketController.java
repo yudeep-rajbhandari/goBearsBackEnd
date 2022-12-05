@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * This controller class handles the request for web socket.
+ */
 @Controller
 @CrossOrigin(origins = "http://localhost:3000")
 public class WebSocketController {

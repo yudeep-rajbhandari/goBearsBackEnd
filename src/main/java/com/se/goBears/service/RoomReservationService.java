@@ -116,6 +116,12 @@ public class RoomReservationService {
 
     }
 
+    /**
+     * This method saves a reservation for a room.
+     * @param reservations is the reservation object.
+     * @param roomId is the room associated with reservation.
+     * @return a saved reservation.
+     */
     public Reservations saveRoomReservation(Reservations reservations, Long roomId) {
         reservations.setReserveType(Reservations.ReserveType.ROOM);
         reservations.setEntityName(roomDao.findRoomById(roomId).getName());
@@ -229,6 +235,10 @@ public class RoomReservationService {
         }
     }
 
+    /**
+     * This method deletes a reservation given a reservation id.
+     * @param id is the id of the reservation to be deleted.
+     */
     public void deleteReservationByid(Long id) {
         reservationRepository.deleteById(id);
     }

@@ -2,6 +2,10 @@ package com.se.goBears.entity;
 
 import javax.persistence.*;
 
+/**
+ * This entity class defines the methods and variables for the entity Reservations. Reservation handles all
+ * reservations.
+ */
 @Entity
 public class Reservations {
 

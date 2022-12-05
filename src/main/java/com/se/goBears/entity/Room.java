@@ -8,6 +8,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 
+/**
+ * This entity class defines the methods and variables for the Room Role.
+ */
 @Entity
 public class Room implements Serializable {
     @Id

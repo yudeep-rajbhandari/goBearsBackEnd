@@ -10,29 +10,23 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
+/**
+ * This controller class handles the API requests for allotment.
+ */
 @RestController
 @RequestMapping("/api/allotment/")
 @CrossOrigin(origins = "http://localhost:3000")
 
-/**
- * This controller handles all the API requests for Allotment.
- * @param
- * @return
- * @throws
- * @version
- */
+
 public class AllotmentController {
 
-    /**
-     * <p>This is a autowire to allotment service.</p>
-     */
     @Autowired
     private AllotmentService allotmentService;
 
     /**
-     * <p>This method handles the request to add an allotment.</p>
-     * @param allotment Request body for allotment.
-     * @return The saved request body for allotment.
+     * This method handles the request to add an allotment.
+     * @param allotment is a request body for allotment.
+     * @return the saved request body for allotment.
      */
     @PostMapping("addAllotment")
     @PreAuthorize("hasRole('ADMIN')")
@@ -41,8 +35,7 @@ public class AllotmentController {
     }
 
     /**
-     * <p>This method handles the request for all allotment.</p>
-     * @param
+     * This method handles the request for all allotment.
      * @return A list of all allotment.
      */
     @GetMapping("/getAllAllotment")
@@ -53,15 +46,20 @@ public class AllotmentController {
 
 
     /**
-     * <p>This method handles the request to get allotment for an id.</p>
-     * @param userId
-     * @return
+     * This method handles the request to get allotment for an id.
+     * @param userId is the id of the user.
+     * @return a list of allotment associated with a user.
      */
     @GetMapping("/getMyAllotment/{userId}")
     public List<Allotment> getMyAllotment(@PathVariable Long userId) {
         return allotmentService.getMyAllotment(userId);
     }
 
+    /**
+     * This method handles the request for deletion of allotment.
+     * @param allotmentId is the id of the allotment to be deleted.
+     * @return message stating successful deletion.
+     */
     @DeleteMapping("/deleteAllotment/{allotmentId}")
     @PreAuthorize("hasRole('ADMIN')")
     public String deleteAllotment(@PathVariable Long allotmentId) {

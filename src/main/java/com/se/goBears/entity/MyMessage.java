@@ -1,5 +1,8 @@
 package com.se.goBears.entity;
 
+/**
+ * This class handles messages.
+ */
 public class MyMessage {
     private String senderName;
     private String receiverName;

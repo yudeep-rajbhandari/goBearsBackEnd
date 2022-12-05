@@ -225,6 +225,9 @@ public class RoomService {
     }
 
 
+    /**
+     * This method returns a room name given a room id.
+     */
     public String getRoomNameById(Long id){
         return roomRepository.findRoomById(id).getName();
     }

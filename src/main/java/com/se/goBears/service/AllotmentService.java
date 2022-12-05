@@ -68,6 +68,10 @@ public class AllotmentService {
         return allotmentRepository.findAllotmentsByUser(userService.findUserById(userId));
     }
 
+    /**
+     * This method deletes an allotment.
+     * @param allotmentId is the allotment to be deleted.
+     */
     public void deleteAllotment(Long allotmentId) {
         allotmentRepository.deleteById(allotmentId);
     }

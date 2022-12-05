@@ -1,5 +1,8 @@
 package com.se.goBears.errors;
 
+/**
+ * This class handles custom exceptions.
+ */
 public class CustomException extends RuntimeException {
      private String  message;
 

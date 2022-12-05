@@ -27,6 +27,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+
+/**
+ * This controller class handles all the API request for user authorization.
+ */
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/api/auth")
@@ -48,6 +52,9 @@ public class AuthController {
 
      private  static String roleError = "Error: Role is not found.";
 
+    /**
+     * This method handles user login request.
+     */
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -69,6 +76,9 @@ public class AuthController {
                 roles));
     }
 
+    /**
+     * This method handles user registration.
+     */
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {

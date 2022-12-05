@@ -19,6 +19,9 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 
+/**
+ * This configuration class handles the web security configurations.
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(

@@ -106,6 +106,9 @@ public class ScheduleService {
 
     }
 
+    /**
+     * This method adds time values.
+     */
     private Date addTime(Date date, Date date1){
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
@@ -117,6 +120,9 @@ public class ScheduleService {
         return calendar.getTime();
     }
 
+    /**
+     * This method returns days given dates.
+     */
     private List<DateTime> getAlldayDate(String start,String end,Integer constants){
         DateTimeFormatter pattern = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
         DateTime startDate = DateTime.parse(start);
@@ -133,6 +139,9 @@ public class ScheduleService {
         return days;
     }
 
+    /**
+     * This methods saves a schedule.
+     */
     public Schedule saveSchedule(Date fromDate,Date toDate,String schedule,Room room,List<Schedule> scheduleList) throws Exception {
 
         for(Schedule schedule1: scheduleList){
@@ -151,6 +160,10 @@ public class ScheduleService {
         scheduleRepository.save(schedule1);
         return schedule1;
     }
+
+    /**
+     * This method returns a date given a string value.
+     */
     public Date getDate(String a){
         try{
             SimpleDateFormat formatter6=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -163,9 +176,16 @@ public class ScheduleService {
 
     }
 
+    /**
+     * This method returns true if the given date exists in between.
+     */
     public static boolean isDateInBetweenIncludingEndPoints(final Date min, final Date max, final Date date){
         return !(date.before(min) || date.after(max));
     }
+
+    /**
+     * This method deletes a schedule.
+     */
     public void deleteSchedule(Long id){
         scheduleRepository.deleteById(id);
     }
