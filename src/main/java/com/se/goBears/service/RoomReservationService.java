@@ -78,11 +78,7 @@ public class RoomReservationService {
                 throw new Exception("Cannot reserve because reservation already found for given date/time");
             }
         }
-        if (reservations.getReserveType() == Reservations.ReserveType.ROOM) {
-            reservations.setEntityName(roomDao.findRoomById(roomId).getName());
-        } else if (reservations.getReserveType() == Reservations.ReserveType.RESOURCE) {
-            reservations.setEntityName(resourceRepository.findResourceById(roomId).getResourceName());
-        }
+
         Reservations roomReservation = saveRoomReservation(reservations, room.getId());
         room.getRoomReservation().add(roomReservation);
         room.setId(room.getId());
@@ -122,7 +118,8 @@ public class RoomReservationService {
 
     public Reservations saveRoomReservation(Reservations reservations, Long roomId) {
         reservations.setReserveType(Reservations.ReserveType.ROOM);
-        reservations.setRoomId(roomId);
+        reservations.setEntityName(roomDao.findRoomById(roomId).getName());
+        reservations.setEntityId(roomId);
         return reservationRepository.save(reservations);
     }
 

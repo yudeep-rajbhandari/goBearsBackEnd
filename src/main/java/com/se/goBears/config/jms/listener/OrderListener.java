@@ -11,17 +11,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderListener {
 
-  @Autowired
-  private MailService mailService;
+    @Autowired
+    private MailService mailService;
 
-  @Autowired
-  private UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-  @JmsListener(destination = "yudeep.myqueue")
-  public void receiveOrder(Reservations form) throws Exception {
-    String message = "Your reservation status for room "+form.getRoomId() + " has changed to "+form.getStatus();
-    String email = userRepository.findUserById(Long.valueOf(form.getBookedBy())).getEmail();
-    mailService.sendEmail1(message,email);
-  }
-  
+    @JmsListener(destination = "yudeep.myqueue")
+    public void receiveOrder(Reservations form) throws Exception {
+        String message = "Your reservation status for room " + form.getEntityId() + " has changed to " + form.getStatus();
+        String email = userRepository.findUserById(Long.valueOf(form.getBookedBy())).getEmail();
+        mailService.sendEmail1(message, email);
+    }
+
 }

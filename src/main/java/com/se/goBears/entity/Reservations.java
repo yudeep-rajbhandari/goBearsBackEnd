@@ -17,7 +17,7 @@ public class Reservations {
 
     private String toDate;
 
-    private long roomId;
+    private long entityId;
 
     private String entityName;
     private Status status = Status.PENDING;
@@ -31,14 +31,14 @@ public class Reservations {
         this.entityName = entityName;
     }
 
-    public long getRoomId() {
+    public long getEntityId() {
 
-        return roomId;
+        return entityId;
     }
 
-    public void setRoomId(long roomId) {
+    public void setEntityId(long roomId) {
 
-        this.roomId = roomId;
+        this.entityId = roomId;
     }
 
     public Long getId() {
